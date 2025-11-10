@@ -94,6 +94,7 @@
 
         @media (max-width: 767px) {
           .swiper-buttons {
+            /* Center the navigation buttons below the swiper */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -108,7 +109,22 @@
             position: static;
             width: 40px;
             height: 40px;
-            transform: none;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #0f2831, #1e4351);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: background 0.3s ease, transform 0.2s ease;
+            transform: none; /* disable desktop translateY */
+          }
+
+          .swiper-button-next:hover,
+          .swiper-button-prev:hover {
+            background: linear-gradient(45deg, #1e4351, #0f2831);
+            transform: scale(1.05);
+          }
+
+          .swiper-button-next:active,
+          .swiper-button-prev:active {
+            transform: scale(0.95);
           }
 
           .swiper-button-next::after,
