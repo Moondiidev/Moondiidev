@@ -223,25 +223,7 @@ body {
     transform: rotate(360deg);
   }
 }
-.video-container:fullscreen,
-.video-container:-webkit-full-screen,
-.video-container:-moz-full-screen {
-  width: 100vw !important;
-  height: 100vh !important;
-  padding: 0 !important;
-  background: black !important;
-  border-radius: 0 !important;
-  z-index: 9999 !important;
-}
 
-.video-container:fullscreen .custom-video,
-.video-container:-webkit-full-screen .custom-video,
-.video-container:-moz-full-screen .custom-video {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: contain !important;
-  border-radius: 0 !important;
-}
 .custom-video {
   position: absolute;
   top: 0;
