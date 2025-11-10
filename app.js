@@ -340,7 +340,6 @@ function initVideoControls() {
 
   videos.forEach((video) => {
     const loader = video.parentElement.querySelector(".loader");
-    const playButton = video.parentElement.querySelector(".play-button");
 
     if (isComputer) {
       video.load();
@@ -350,54 +349,59 @@ function initVideoControls() {
       video.muted = true;
     }
 
-    // Hide video until ready
+    // Show loader and hide video initially
     video.style.display = "none";
     loader.style.display = "block";
 
-    // When video is ready to play
+    // Combined event listener for video readiness
     const handleVideoReady = () => {
-      loader.style.display = "none";
+      if (loader) {
+        loader.style.display = "none";
+      }
       video.style.display = "block";
       if (isComputer) {
-        if (playButton) playButton.style.display = "none";
+        const playButton = video.parentElement.querySelector(".play-button");
+        if (playButton) {
+          playButton.style.display = "none";
+        }
         video.play().catch(() => {});
       }
     };
 
     video.addEventListener("canplaythrough", handleVideoReady);
 
-    // Fallback in case canplaythrough doesn't fire
+    // Fallback to hide loader after a certain time
     setTimeout(() => {
-      loader.style.display = "none";
+      if (loader) {
+        loader.style.display = "none";
+      }
       video.style.display = "block";
-    }, 5000);
+    }, 5000); // 5 seconds timeout as a fallback
 
-    // ✅ Click to toggle fullscreen and controls
+    // Event listener for click to go fullscreen
     video.addEventListener("click", () => {
-      // Request fullscreen on the video itself (not container)
       if (video.requestFullscreen) {
         video.requestFullscreen();
-      } else if (video.webkitRequestFullscreen) {
-        video.webkitRequestFullscreen();
       } else if (video.mozRequestFullScreen) {
-        video.mozRequestFullScreen();
+        video.mozRequestFullScreen(); // Firefox
+      } else if (video.webkitRequestFullscreen) {
+        video.webkitRequestFullscreen(); // Chrome, Safari and Opera
       } else if (video.msRequestFullscreen) {
-        video.msRequestFullscreen();
+        video.msRequestFullscreen(); // IE/Edge
       }
-
-      // Show native video controls
-      video.controls = true;
-      video.muted = false;
-      if (playButton) playButton.style.display = "none";
-      video.play().catch(() => {});
+      const playButton = video.parentElement.querySelector(".play-button");
+      if (playButton) {
+        playButton.style.display = "none";
+      }
+      video.muted = false; // Unmute the video
+      video.play();
     });
 
-    // ✅ When exiting fullscreen
+    // Event listener for exiting fullscreen
     document.addEventListener("fullscreenchange", () => {
       if (!document.fullscreenElement) {
-        video.muted = true;
-        video.controls = false;
-        video.play().catch(() => {});
+        video.muted = true; // Mute the video
+        video.play();
       }
     });
   });

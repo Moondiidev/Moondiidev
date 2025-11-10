@@ -266,29 +266,6 @@ body {
   z-index: 10;
 }
 
-.custom-video:fullscreen,
-.custom-video:-webkit-full-screen,
-.custom-video:-moz-full-screen {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
-  object-fit: contain !important;
-  background: black !important;
-  border-radius: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  z-index: 999999 !important;
-}
-
-.video-container:has(.custom-video:fullscreen),
-.screen-frame:has(.custom-video:fullscreen),
-.swiper-slide:has(.custom-video:fullscreen) {
-  overflow: visible !important;
-  z-index: 999999 !important;
-}
-
 .video-title {
   font-size: 2rem;
   font-weight: bold;
