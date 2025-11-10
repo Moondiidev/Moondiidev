@@ -266,6 +266,20 @@ body {
   z-index: 10;
 }
 
+.custom-video:fullscreen,
+.custom-video:-webkit-full-screen,
+.custom-video:-moz-full-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw !important;
+  height: 100vh !important;
+  object-fit: contain !important; /* keeps full video visible, no crop */
+  background: black;
+  border-radius: 0 !important;
+  z-index: 9999 !important;
+}
+
 .video-title {
   font-size: 2rem;
   font-weight: bold;
