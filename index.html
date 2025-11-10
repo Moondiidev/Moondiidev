@@ -3,88 +3,91 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Moondiidev</title>
-
-    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="styles.css" />
     <link
       rel="stylesheet"
       href="https://unpkg.com/swiper/swiper-bundle.min.css"
     />
-
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="styles.css" />
+    <title>Moondiidev</title>
   </head>
   <body class="font-sans antialiased text-white bg-dark">
-    <!-- Common code (overlay, transitions) -->
-    <!-- We will load this via fetch in app.js or we can just embed here directly -->
-    <div
-      id="overlay"
-      class="fixed inset-0 z-50 bg-black bg-opacity-0"
-      style="display: none"
-    ></div>
-    <div
-      id="project-details-overlay"
-      class="fixed inset-0 z-50 bg-black bg-opacity-70 flex items-center justify-center"
-      style="display: none"
-    >
-      <div class="bg-gray-800 p-5 rounded max-w-lg text-center">
-        <h2 class="text-2xl font-bold mb-4" id="project-title">
-          Project Details
-        </h2>
-        <p id="project-details" class="text-lg mb-4"></p>
-        <button
-          id="close-button"
-          class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        >
-          Close
-        </button>
-      </div>
-    </div>
+    <!-- Common code -->
+    <script>
+      // Function to insert HTML content at the beginning of the body
+      function insertTemplateAtBeginning(content) {
+        document.body.insertAdjacentHTML("afterbegin", content);
+        // After insertion, initialize scripts that depend on this content
+        initializeScripts();
+      }
 
+      // Function to initialize scripts after content insertion
+      function initializeScripts() {
+        // Initialize your scripts here, like Swiper.js or Barba.js
+        initSwiper();
+        initBarba();
+        // Any other initialization scripts
+      }
+
+      // Fetch the project details overlay template
+      fetch("common.html")
+        .then((response) => response.text())
+        .then((data) => {
+          insertTemplateAtBeginning(data); // Insert fetched template at the beginning
+        })
+        .catch((error) => console.error("Error fetching template:", error));
+    </script>
+
+    <!-- Main -->
     <main data-barba="container" data-barba-namespace="home" class="container">
       <section class="text-gray-600 body-font">
-        <div
+        <!-- Add background to here 
+                 <div
           class="bg-image bg-cover bg-center h-screen flex items-center justify-center"
           style="background-image: url('hero.webp')"
         >
-          <div class="background-title">Munkhbilguun<br />Munkhdemberel</div>
+         -->
+        <div
+          class="bg-image bg-cover bg-center h-screen flex items-center justify-center"
+        >
+          <!-- Background title -->
+          <div class="background-title">
+            Munkhbilguun
+            <br />
+            Munkhdemberel
+          </div>
+          <!-- Vertical Menu -->
           <div class="absolute md:top-20 top-0 left-0 p-10">
-            <ul class="menu md:-space-y-14 space-y-4">
-              <li>
-                <a
-                  href="websites.html"
-                  class="menu-button"
-                  data-transition-type="type1"
-                  >Websites</a
-                >
-              </li>
-              <li>
-                <a
-                  href="games.html"
-                  class="menu-button"
-                  data-transition-type="type1"
-                  >Games</a
-                >
-              </li>
-            </ul>
+            <div class="flex flex-col items-start justify-between">
+              <div>
+                <ul class="menu md:-space-y-14">
+                  <li>
+                    <a
+                      href="websites.html"
+                      class="menu-button"
+                      data-transition-type="type1"
+                      >Websites</a
+                    >
+                  </li>
+                  <li>
+                    <a href="games.html" class="menu-button rotate-up">Games</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </section>
       <div id="floor"></div>
     </main>
 
-    <!-- JS Libraries -->
-    <script src="https://unpkg.com/@barba/core" defer></script>
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js" defer></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"
-      defer
-    ></script>
-
-    <!-- Custom Script -->
-    <script src="app.js" defer></script>
+    <!-- Barba.js -->
+    <script src="https://unpkg.com/@barba/core"></script>
+    <!-- Swiper.js -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <!-- App.js for custom animations and transitions -->
+    <script src="app.js"></script>
   </body>
 </html>
