@@ -330,7 +330,6 @@ function initSwiper(containerSelector, options) {
 
   console.log("Swiper initialized.");
 }
-
 function initVideoControls() {
   console.log("Initializing video controls...");
   const videos = document.querySelectorAll(".custom-video");
@@ -339,7 +338,8 @@ function initVideoControls() {
   const isComputer = /Windows|Macintosh|Linux/.test(navigator.userAgent);
 
   videos.forEach((video) => {
-    const loader = video.parentElement.querySelector(".loader");
+    const container = video.closest(".video-container");
+    const loader = container.querySelector(".loader");
 
     if (isComputer) {
       video.load();
@@ -349,58 +349,53 @@ function initVideoControls() {
       video.muted = true;
     }
 
-    // Show loader and hide video initially
+    // Show loader initially
     video.style.display = "none";
     loader.style.display = "block";
 
-    // Combined event listener for video readiness
+    // Handle when the video is ready to play
     const handleVideoReady = () => {
-      if (loader) {
-        loader.style.display = "none";
-      }
+      if (loader) loader.style.display = "none";
       video.style.display = "block";
       if (isComputer) {
-        const playButton = video.parentElement.querySelector(".play-button");
-        if (playButton) {
-          playButton.style.display = "none";
-        }
+        const playButton = container.querySelector(".play-button");
+        if (playButton) playButton.style.display = "none";
         video.play().catch(() => {});
       }
     };
 
     video.addEventListener("canplaythrough", handleVideoReady);
 
-    // Fallback to hide loader after a certain time
+    // Fallback loader timeout
     setTimeout(() => {
-      if (loader) {
-        loader.style.display = "none";
-      }
+      if (loader) loader.style.display = "none";
       video.style.display = "block";
-    }, 5000); // 5 seconds timeout as a fallback
+    }, 5000);
 
-    // Event listener for click to go fullscreen
-    video.addEventListener("click", () => {
-      if (video.requestFullscreen) {
-        video.requestFullscreen();
-      } else if (video.mozRequestFullScreen) {
-        video.mozRequestFullScreen(); // Firefox
-      } else if (video.webkitRequestFullscreen) {
-        video.webkitRequestFullscreen(); // Chrome, Safari and Opera
-      } else if (video.msRequestFullscreen) {
-        video.msRequestFullscreen(); // IE/Edge
+    // ✅ Improved fullscreen handling
+    container.addEventListener("click", () => {
+      const playButton = container.querySelector(".play-button");
+      if (playButton) playButton.style.display = "none";
+
+      // Request fullscreen on container (for proper scaling)
+      if (container.requestFullscreen) {
+        container.requestFullscreen();
+      } else if (container.mozRequestFullScreen) {
+        container.mozRequestFullScreen();
+      } else if (container.webkitRequestFullscreen) {
+        container.webkitRequestFullscreen();
+      } else if (container.msRequestFullscreen) {
+        container.msRequestFullscreen();
       }
-      const playButton = video.parentElement.querySelector(".play-button");
-      if (playButton) {
-        playButton.style.display = "none";
-      }
-      video.muted = false; // Unmute the video
+
+      video.muted = false;
       video.play();
     });
 
-    // Event listener for exiting fullscreen
+    // Exit fullscreen → restore muted state
     document.addEventListener("fullscreenchange", () => {
       if (!document.fullscreenElement) {
-        video.muted = true; // Mute the video
+        video.muted = true;
         video.play();
       }
     });
