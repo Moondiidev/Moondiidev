@@ -206,16 +206,46 @@
           background-color: #0f2831;
         }
 
+        /* Base layout for details button + link */
+        .details-button-with-link {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          justify-content: flex-start;
+        }
+
+        /* GitHub link inside the button */
         .button-link {
-          color: #d8eefe; /* soft near-white blue that blends with your button */
-          margin-left: 8px;
+          color: #d8eefe;
           text-decoration: none;
           font-weight: 600;
           font-size: 0.95em;
+          display: flex;
+          align-items: center;
+          gap: 4px; /* spacing between icon & text */
         }
 
         .button-link:hover {
           text-decoration: underline;
+        }
+
+        /* GitHub icon */
+        .button-link svg {
+          width: 16px;
+          height: 16px;
+          fill: #d8eefe;
+        }
+
+        /* Make the link slightly smaller on mobile for better spacing */
+        @media (max-width: 480px) {
+          .button-link {
+            font-size: 0.85em;
+          }
+
+          .button-link svg {
+            width: 14px;
+            height: 14px;
+          }
         }
 
         .project-details {
@@ -294,7 +324,7 @@
                   </div>
                 </div>
                 <button
-                  class="details-button"
+                  class="details-button details-button-with-link"
                   onclick="showDetails('Ominous Beeping App', 'Created a 2.5D pixelated game that based on Rick and Morty S4E2 (Unity 2D, C#, Android) (02/2021) (now retired due to Play Store SDK updates)')"
                 >
                   Details
@@ -303,6 +333,19 @@
                     target="_blank"
                     class="button-link"
                   >
+                    <svg viewBox="0 0 16 16" aria-hidden="true">
+                      <path
+                        d="M8 .198a8 8 0 0 0-2.53 15.6c.4.074.547-.173.547-.385 
+      0-.19-.007-.693-.01-1.36-2.226.483-2.695-1.073-2.695-1.073-.364-.924-.89-1.17-.89-1.17-.727-.497.055-.487.055-.487 
+      .803.057 1.225.824 1.225.824.714 1.223 1.872.87 2.328.665.073-.517.28-.87.508-1.07-1.777-.2-3.644-.888-3.644-3.953 
+      0-.873.31-1.587.823-2.147-.083-.202-.357-1.017.078-2.12 
+      0 0 .67-.214 2.2.82a7.63 7.63 0 0 1 2.003-.27c.68.003 1.366.092 2.003.27 
+      1.53-1.034 2.198-.82 2.198-.82.437 1.103.163 1.918.08 2.12.513.56.822 
+      1.274.822 2.147 0 3.073-1.87 3.75-3.653 3.947.288.248.543.735.543 1.48 
+      0 1.068-.01 1.93-.01 2.19 0 .214.145.462.55.384A8.001 
+      8.001 0 0 0 8 .198z"
+                      />
+                    </svg>
                     GitHub
                   </a>
                 </button>
@@ -325,7 +368,7 @@
                   </div>
                 </div>
                 <button
-                  class="details-button"
+                  class="details-button details-button-with-link"
                   onclick="showDetails('Painty Road', 'Created an award-winning hyper casual 3D action game (Unity 3D, C#, Android) (02/2021) (now retired due to Play Store SDK updates)')"
                 >
                   Details
@@ -334,6 +377,19 @@
                     target="_blank"
                     class="button-link"
                   >
+                    <svg viewBox="0 0 16 16" aria-hidden="true">
+                      <path
+                        d="M8 .198a8 8 0 0 0-2.53 15.6c.4.074.547-.173.547-.385 
+      0-.19-.007-.693-.01-1.36-2.226.483-2.695-1.073-2.695-1.073-.364-.924-.89-1.17-.89-1.17-.727-.497.055-.487.055-.487 
+      .803.057 1.225.824 1.225.824.714 1.223 1.872.87 2.328.665.073-.517.28-.87.508-1.07-1.777-.2-3.644-.888-3.644-3.953 
+      0-.873.31-1.587.823-2.147-.083-.202-.357-1.017.078-2.12 
+      0 0 .67-.214 2.2.82a7.63 7.63 0 0 1 2.003-.27c.68.003 1.366.092 2.003.27 
+      1.53-1.034 2.198-.82 2.198-.82.437 1.103.163 1.918.08 2.12.513.56.822 
+      1.274.822 2.147 0 3.073-1.87 3.75-3.653 3.947.288.248.543.735.543 1.48 
+      0 1.068-.01 1.93-.01 2.19 0 .214.145.462.55.384A8.001 
+      8.001 0 0 0 8 .198z"
+                      />
+                    </svg>
                     GitHub
                   </a>
                 </button>
@@ -359,7 +415,7 @@
                   </div>
                 </div>
                 <button
-                  class="details-button"
+                  class="details-button details-button-with-link"
                   onclick="showDetails('Flappy Legends: Birds Adventure', 'Created a 2D pixelated game that expands upon the 2014 hit game Flappy Bird. Included 3 game modes, 4 bosses, 10+ characters, 5+ power ups and cutscenes (Unity 2D, C#, Android). Integrated Google leaderboards, Social Media score sharing, in-app purchasing, and Google Analytics (12/2020) (now retired due to Play Store SDK updates)')"
                 >
                   Details
@@ -368,6 +424,19 @@
                     target="_blank"
                     class="button-link"
                   >
+                    <svg viewBox="0 0 16 16" aria-hidden="true">
+                      <path
+                        d="M8 .198a8 8 0 0 0-2.53 15.6c.4.074.547-.173.547-.385 
+      0-.19-.007-.693-.01-1.36-2.226.483-2.695-1.073-2.695-1.073-.364-.924-.89-1.17-.89-1.17-.727-.497.055-.487.055-.487 
+      .803.057 1.225.824 1.225.824.714 1.223 1.872.87 2.328.665.073-.517.28-.87.508-1.07-1.777-.2-3.644-.888-3.644-3.953 
+      0-.873.31-1.587.823-2.147-.083-.202-.357-1.017.078-2.12 
+      0 0 .67-.214 2.2.82a7.63 7.63 0 0 1 2.003-.27c.68.003 1.366.092 2.003.27 
+      1.53-1.034 2.198-.82 2.198-.82.437 1.103.163 1.918.08 2.12.513.56.822 
+      1.274.822 2.147 0 3.073-1.87 3.75-3.653 3.947.288.248.543.735.543 1.48 
+      0 1.068-.01 1.93-.01 2.19 0 .214.145.462.55.384A8.001 
+      8.001 0 0 0 8 .198z"
+                      />
+                    </svg>
                     GitHub
                   </a>
                 </button>
