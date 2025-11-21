@@ -284,8 +284,32 @@
                 <button
                   class="details-button"
                   onclick="showDetails('Ominous Beeping App', 'Created a 2.5D pixelated game that based on Rick and Morty S4E2 (Unity 2D, C#, Android) (02/2021) (now retired due to Play Store SDK updates)')"
+                  style="
+                    display: flex;
+                    gap: 8px;
+                    align-items: center;
+                    padding: 8px 14px;
+                    background: #444;
+                    color: white;
+                    border: none;
+                    border-radius: 6px;
+                    cursor: pointer;
+                  "
                 >
                   Details
+                  <a
+                    href="https://github.com/Moondiidev/Ominous-Beeping-App"
+                    target="_blank"
+                    style="
+                      color: #9acdff;
+                      text-decoration: none;
+                      font-weight: bold;
+                    "
+                    onmouseover="this.style.textDecoration='underline'"
+                    onmouseout="this.style.textDecoration='none'"
+                  >
+                    GitHub
+                  </a>
                 </button>
               </div>
               <div class="swiper-slide flex flex-col items-center">
