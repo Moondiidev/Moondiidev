@@ -39,6 +39,7 @@
       class="container"
     >
       <style>
+        /* Custom Swiper Navigation Buttons */
         .swiper-button-next,
         .swiper-button-prev {
           background: linear-gradient(45deg, #0f2831, #1e4351);
@@ -48,11 +49,14 @@
           color: white;
           box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
           transition: background 0.3s ease, transform 0.3s ease;
-          z-index: 10;
-          position: absolute;
-          top: 50%;
+          z-index: 10; /* Ensure buttons are above the content */
+          position: absolute; /* Position them absolutely */
+          top: 50%; /* Center vertically */
           transform: translateY(-50%);
-          user-select: none;
+          -webkit-user-select: none; /* Safari */
+          -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* IE10+/Edge */
+          user-select: none; /* Standard */
         }
 
         .swiper-button-next {
@@ -66,7 +70,7 @@
         .swiper-button-next:hover,
         .swiper-button-prev:hover {
           background: linear-gradient(45deg, #1e4351, #0f2831);
-          transform: translateY(-50%) scale(1.05);
+          transform: translateY(-50%) scale(1.05); /* Scale up on hover */
         }
 
         .swiper-button-next::after,
@@ -74,8 +78,21 @@
           font-size: 20px;
         }
 
+        .swiper-buttons {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+        }
+
+        .swiper-button-next .swiper-navigation-icon,
+        .swiper-button-prev .swiper-navigation-icon {
+          height: 60%;
+        }
+
         @media (max-width: 767px) {
           .swiper-buttons {
+            /* Center the navigation buttons */
             display: flex;
             justify-content: center;
             gap: 5rem;
@@ -88,6 +105,8 @@
             left: 0;
           }
         }
+
+        /**********************************/
 
         .swiper-slide {
           display: flex;
