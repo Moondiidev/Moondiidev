@@ -47,20 +47,31 @@ const swiper2Options = {
 };
 
 function showDetails(title, description, githubUrl) {
+  // Get modal elements
+  const overlay = document.getElementById("project-details-overlay");
   const titleEl = document.getElementById("project-title");
   const detailsEl = document.getElementById("project-details");
   const githubLink = document.getElementById("github-link");
-  const overlay = document.getElementById("project-details-overlay");
 
-  // Only do stuff if elements exist
-  if (!titleEl || !detailsEl || !githubLink || !overlay) return;
+  // Make sure elements exist
+  if (!overlay || !titleEl || !detailsEl || !githubLink) {
+    console.error("Modal elements not found");
+    return;
+  }
 
+  // Set content
   titleEl.innerText = title;
   detailsEl.innerText = description;
 
-  githubLink.href = githubUrl;
-  githubLink.style.display = githubUrl ? "inline-block" : "none";
+  // Show or hide GitHub link
+  if (githubUrl) {
+    githubLink.href = githubUrl;
+    githubLink.style.display = "inline-block"; // show link
+  } else {
+    githubLink.style.display = "none"; // hide link if no URL
+  }
 
+  // Show modal
   overlay.style.display = "flex";
 }
 
