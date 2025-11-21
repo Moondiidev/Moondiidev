@@ -46,10 +46,21 @@ const swiper2Options = {
   },
 };
 
-function showDetails(title, description) {
-  document.getElementById("project-title").textContent = title;
-  document.getElementById("project-details").textContent = description;
-  document.getElementById("project-details-overlay").style.display = "flex";
+function showDetails(title, description, githubUrl) {
+  const modal = document.getElementById("details-modal");
+  document.getElementById("details-title").innerText = title;
+  document.getElementById("details-description").innerText = description;
+
+  const githubLink = document.getElementById("details-github");
+
+  if (githubUrl) {
+    githubLink.href = githubUrl;
+    githubLink.style.display = "inline-flex";
+  } else {
+    githubLink.style.display = "none";
+  }
+
+  modal.style.display = "block";
 }
 
 function closeDetails() {

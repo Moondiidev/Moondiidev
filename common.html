@@ -3,6 +3,7 @@
   class="fixed inset-0 z-[9999] bg-black bg-opacity-0"
   style="display: none"
 ></div>
+
 <div
   id="project-details-overlay"
   class="fixed inset-0 z-[9999] bg-black bg-opacity-70 flex items-center justify-center"
@@ -10,9 +11,21 @@
 >
   <div id="popup" class="bg-gray-800 p-5 rounded max-w-lg text-center">
     <h2 class="text-2xl font-bold mb-4" id="project-title">Project Details</h2>
-    <p id="project-details" class="text-lg mb-4">
-      <!-- Project details will be inserted here -->
-    </p>
+
+    <p id="project-details" class="text-lg mb-4"></p>
+
+    <!-- ⭐ GitHub Button -->
+    <a
+      id="project-github"
+      href="#"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-block mb-4 px-4 py-2 bg-[#1e4351] text-white rounded hover:bg-[#0f2831] transition"
+      style="display: none"
+    >
+      🔗 View on GitHub
+    </a>
+
     <button
       id="close-button"
       class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
