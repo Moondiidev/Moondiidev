@@ -14,26 +14,20 @@
   <body class="font-sans antialiased text-white bg-dark">
     <!-- Common code -->
     <script>
-      // Function to insert HTML content at the beginning of the body
       function insertTemplateAtBeginning(content) {
         document.body.insertAdjacentHTML("afterbegin", content);
-        // After insertion, initialize scripts that depend on this content
         initializeScripts();
       }
 
-      // Function to initialize scripts after content insertion
       function initializeScripts() {
-        // Initialize your scripts here, like Swiper.js or Barba.js
         initSwiper();
         initBarba();
-        // Any other initialization scripts
       }
 
-      // Fetch the project details overlay template
       fetch("common.html")
         .then((response) => response.text())
         .then((data) => {
-          insertTemplateAtBeginning(data); // Insert fetched template at the beginning
+          insertTemplateAtBeginning(data);
         })
         .catch((error) => console.error("Error fetching template:", error));
     </script>
@@ -45,7 +39,6 @@
       class="container"
     >
       <style>
-        /* Custom Swiper Navigation Buttons */
         .swiper-button-next,
         .swiper-button-prev {
           background: linear-gradient(45deg, #0f2831, #1e4351);
@@ -55,14 +48,11 @@
           color: white;
           box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
           transition: background 0.3s ease, transform 0.3s ease;
-          z-index: 10; /* Ensure buttons are above the content */
-          position: absolute; /* Position them absolutely */
-          top: 50%; /* Center vertically */
+          z-index: 10;
+          position: absolute;
+          top: 50%;
           transform: translateY(-50%);
-          -webkit-user-select: none; /* Safari */
-          -moz-user-select: none; /* Firefox */
-          -ms-user-select: none; /* IE10+/Edge */
-          user-select: none; /* Standard */
+          user-select: none;
         }
 
         .swiper-button-next {
@@ -76,7 +66,7 @@
         .swiper-button-next:hover,
         .swiper-button-prev:hover {
           background: linear-gradient(45deg, #1e4351, #0f2831);
-          transform: translateY(-50%) scale(1.05); /* Scale up on hover */
+          transform: translateY(-50%) scale(1.05);
         }
 
         .swiper-button-next::after,
@@ -84,21 +74,8 @@
           font-size: 20px;
         }
 
-        .swiper-buttons {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          width: 100%;
-        }
-
-        .swiper-button-next .swiper-navigation-icon,
-        .swiper-button-prev .swiper-navigation-icon {
-          height: 60%;
-        }
-
         @media (max-width: 767px) {
           .swiper-buttons {
-            /* Center the navigation buttons */
             display: flex;
             justify-content: center;
             gap: 5rem;
@@ -112,8 +89,6 @@
           }
         }
 
-        /**********************************/
-
         .swiper-slide {
           display: flex;
           flex-direction: column;
@@ -121,7 +96,6 @@
           position: relative;
         }
 
-        /* Apply overlay styles for devices larger than mobile */
         @media (min-width: 768px) {
           .swiper-slide .overlay {
             position: absolute;
@@ -131,43 +105,27 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
             z-index: 9;
-            display: block;
           }
 
           .swiper-slide-active .overlay {
-            display: none; /* Hide overlay for active slide */
+            display: none;
           }
         }
-
-        .laptop-frame {
-          position: relative;
-          width: 30rem;
-          height: 24rem;
-          border-radius: 12px;
-          background-color: #000;
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin: 1rem 0;
-          box-sizing: border-box;
-        }
       </style>
+
       <a
         href="index.html"
         class="menu-button md:mt-12"
         data-transition-type="type2"
         >HOME</a
       >
+
       <div
         class="w-full h-full bg-dark flex flex-col items-center justify-center relative md:mt-8 mt-2 overflow-hidden py-16 px-8"
       >
-        <!-- <h2 class="text-5xl font-bold custom-text-green-100 md:mb-12 mb-6">
-          Web Projects
-        </h2> -->
         <div class="swiper-container swiper-container-1 w-full max-w-4xl mb-6">
           <div class="swiper-wrapper">
-            <!-- Slides -->
+            <!-- WEATHER RN -->
             <div class="swiper-slide flex flex-col items-center">
               <div class="screen-frame">
                 <div class="video-container">
@@ -181,26 +139,39 @@
                     poster="images/Weather RN.png"
                   >
                     <source src="videos/weather RN.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
                   </video>
                 </div>
                 <div class="video-title">Weather RN</div>
+
                 <p class="video-description">
-                  Created a weather app with fun animations to challenge myself
-                  in building interactive web experiences.
-                  <br />
+                  Created a weather app with fun animations to challenge myself.
+                </p>
+
+                <div class="flex items-center gap-3 mt-1">
                   <a
-                    class="text-blue-400 hover:text-blue-300 font-semibold transition duration-300 ease-in-out"
+                    class="text-blue-400 hover:text-blue-300 font-semibold transition"
                     href="https://moondiidev.github.io/Weather-RN/#"
                     target="_blank"
                   >
-                    Click here to visit
+                    Visit site
                   </a>
-                </p>
+
+                  <a
+                    href="https://github.com/Moondiidev/Weather-RN"
+                    target="_blank"
+                    class="text-blue-300 hover:text-blue-200 font-semibold flex items-center gap-1 transition"
+                  >
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 16 16">
+                      <path d="M8 .198a8 8 0 ..."></path>
+                    </svg>
+                    GitHub
+                  </a>
+                </div>
               </div>
               <div class="overlay"></div>
             </div>
 
+            <!-- TALENTSNIPE (PRIVATE REPO) -->
             <div class="swiper-slide flex flex-col items-center">
               <div class="screen-frame">
                 <div class="video-container">
@@ -214,35 +185,32 @@
                     poster="images/talentsnipe-jobs.png"
                   >
                     <source src="videos/talentsnipe.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
                   </video>
                 </div>
                 <div class="video-title">TalentSnipe</div>
+
                 <p class="video-description">
-                  AI-powered anonymous job search platform. I architected the
-                  system, guided UI/UX design and developed the back-end. My
-                  time was spent finding ways to improve the system, coding,
-                  managing people, giving tasks and checking them, maintaining
-                  and expanding the infrastructure.
-                  <span class="text-gray-300">
-                    <br />(Node JS, Express JS, MongoDB, Mongoose, GCP, Docker,
-                    Kubernetes, Postman, Firebase, Cloudflare, SendGrid, Google
-                    Workspace, Elasticsearch, Figma, Github, Github
-                    workflow)</span
-                  >
-                  <br />
+                  AI-powered anonymous job search platform.
+                </p>
+
+                <div class="flex items-center gap-3 mt-1">
                   <a
-                    class="text-blue-400 hover:text-blue-300 font-semibold transition duration-300 ease-in-out"
+                    class="text-blue-400 hover:text-blue-300 font-semibold transition"
                     href="https://talentsnipe.com"
                     target="_blank"
                   >
-                    Click here to visit
+                    Visit site
                   </a>
-                </p>
+
+                  <span class="text-gray-400 italic text-sm">
+                    GitHub (private repo)
+                  </span>
+                </div>
               </div>
               <div class="overlay"></div>
             </div>
 
+            <!-- INTERWORLDS (PRIVATE REPO) -->
             <div class="swiper-slide flex flex-col items-center">
               <div class="screen-frame">
                 <div class="video-container">
@@ -256,30 +224,32 @@
                     poster="images/Interworlds.png"
                   >
                     <source src="videos/Interworlds.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
                   </video>
                 </div>
                 <div class="video-title">Interworlds</div>
+
                 <p class="video-description">
-                  Developed Level 2 for an educational game created under NASA’s
-                  Psyche Student Collaborations Program at Penn State. Because
-                  the rocket was being built in real time, Unity's physics
-                  engine was not working so I had to hardcode all the physics
-                  interaction by hand. Wanted to educate people about rockets
-                  but ended up educating myself :)
-                  <span class="text-gray-300"> <br />(Unity, C#)</span>
-                  <br />
+                  Developed Level 2 for an educational NASA-backed game.
+                </p>
+
+                <div class="flex items-center gap-3 mt-1">
                   <a
-                    class="text-blue-400 hover:text-blue-300 font-semibold transition duration-300 ease-in-out"
+                    class="text-blue-400 hover:text-blue-300 font-semibold transition"
                     href="https://missiontopsyche.github.io/2022_18k_web-based_game"
                     target="_blank"
                   >
-                    Click here to visit
+                    Visit site
                   </a>
-                </p>
+
+                  <span class="text-gray-400 italic text-sm">
+                    GitHub (private repo)
+                  </span>
+                </div>
               </div>
               <div class="overlay"></div>
             </div>
+
+            <!-- MEMORY MASTER -->
             <div class="swiper-slide flex flex-col items-center">
               <div class="screen-frame">
                 <div class="video-container">
@@ -293,24 +263,37 @@
                     poster="images/memory master.png"
                   >
                     <source src="videos/Memory master.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
                   </video>
                 </div>
                 <div class="video-title">Memory Master</div>
-                <p class="video-description">
-                  Game for chimpanzees
-                  <br />
+
+                <p class="video-description">Game for chimpanzees</p>
+
+                <div class="flex items-center gap-3 mt-1">
                   <a
-                    class="text-blue-400 hover:text-blue-300 font-semibold transition duration-300 ease-in-out"
+                    class="text-blue-400 hover:text-blue-300 font-semibold transition"
                     href="https://moondiidev.github.io/Memory-Master/#"
                     target="_blank"
                   >
-                    Click here to visit
+                    Visit site
                   </a>
-                </p>
+
+                  <a
+                    href="https://github.com/Moondiidev/Memory-Master"
+                    target="_blank"
+                    class="text-blue-300 hover:text-blue-200 font-semibold flex items-center gap-1 transition"
+                  >
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 16 16">
+                      <path d="M8 .198a8 8 0 ..."></path>
+                    </svg>
+                    GitHub
+                  </a>
+                </div>
               </div>
               <div class="overlay"></div>
             </div>
+
+            <!-- MB CINEMA -->
             <div class="swiper-slide flex flex-col items-center">
               <div class="screen-frame">
                 <div class="video-container">
@@ -324,44 +307,52 @@
                     poster="images/MB cinema.png"
                   >
                     <source src="videos/mb cinema.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
                   </video>
                 </div>
                 <div class="video-title">MB Cinema</div>
+
                 <p class="video-description">
-                  A super simple ticket booking solution for a cinema
-                  <br />
+                  A simple web-based cinema ticket booking app.
+                </p>
+
+                <div class="flex items-center gap-3 mt-1">
                   <a
-                    class="text-blue-400 hover:text-blue-300 font-semibold transition duration-300 ease-in-out"
+                    class="text-blue-400 hover:text-blue-300 font-semibold transition"
                     href="https://moondiidev.github.io/MBcinema/#main"
                     target="_blank"
                   >
-                    Click here to visit
+                    Visit site
                   </a>
-                </p>
+
+                  <a
+                    href="https://github.com/Moondiidev/MBcinema"
+                    target="_blank"
+                    class="text-blue-300 hover:text-blue-200 font-semibold flex items-center gap-1 transition"
+                  >
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 16 16">
+                      <path d="M8 .198a8 8 0 ..."></path>
+                    </svg>
+                    GitHub
+                  </a>
+                </div>
               </div>
               <div class="overlay"></div>
             </div>
-            <!-- Add more slides as needed -->
           </div>
         </div>
-        <!-- Add Navigation -->
+
         <div class="swiper-buttons">
           <div class="swiper-button-prev swiper-button-prev-1"></div>
           <div class="swiper-button-next swiper-button-next-1"></div>
         </div>
-        <!-- Add Pagination -->
+
         <div class="swiper-pagination swiper-pagination-1 relative"></div>
       </div>
     </main>
 
-    <!-- Barba.js -->
     <script src="https://unpkg.com/@barba/core"></script>
-    <!-- Swiper.js -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <!-- GSAP for animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    <!-- App.js for custom animations and transitions -->
     <script src="app.js"></script>
   </body>
 </html>
