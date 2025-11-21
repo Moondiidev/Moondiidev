@@ -206,6 +206,18 @@
           background-color: #0f2831;
         }
 
+        .button-link {
+          color: #d8eefe; /* soft near-white blue that blends with your button */
+          margin-left: 8px;
+          text-decoration: none;
+          font-weight: 600;
+          font-size: 0.95em;
+        }
+
+        .button-link:hover {
+          text-decoration: underline;
+        }
+
         .project-details {
           display: none;
           flex-direction: column;
@@ -284,29 +296,12 @@
                 <button
                   class="details-button"
                   onclick="showDetails('Ominous Beeping App', 'Created a 2.5D pixelated game that based on Rick and Morty S4E2 (Unity 2D, C#, Android) (02/2021) (now retired due to Play Store SDK updates)')"
-                  style="
-                    display: flex;
-                    gap: 8px;
-                    align-items: center;
-                    padding: 8px 14px;
-                    background: #444;
-                    color: white;
-                    border: none;
-                    border-radius: 6px;
-                    cursor: pointer;
-                  "
                 >
                   Details
                   <a
                     href="https://github.com/Moondiidev/Ominous-Beeping-App"
                     target="_blank"
-                    style="
-                      color: #9acdff;
-                      text-decoration: none;
-                      font-weight: bold;
-                    "
-                    onmouseover="this.style.textDecoration='underline'"
-                    onmouseout="this.style.textDecoration='none'"
+                    class="button-link"
                   >
                     GitHub
                   </a>
@@ -334,6 +329,13 @@
                   onclick="showDetails('Painty Road', 'Created an award-winning hyper casual 3D action game (Unity 3D, C#, Android) (02/2021) (now retired due to Play Store SDK updates)')"
                 >
                   Details
+                  <a
+                    href="https://github.com/Moondiidev/PaintyRoad"
+                    target="_blank"
+                    class="button-link"
+                  >
+                    GitHub
+                  </a>
                 </button>
               </div>
               <div class="swiper-slide flex flex-col items-center">
@@ -361,6 +363,13 @@
                   onclick="showDetails('Flappy Legends: Birds Adventure', 'Created a 2D pixelated game that expands upon the 2014 hit game Flappy Bird. Included 3 game modes, 4 bosses, 10+ characters, 5+ power ups and cutscenes (Unity 2D, C#, Android). Integrated Google leaderboards, Social Media score sharing, in-app purchasing, and Google Analytics (12/2020) (now retired due to Play Store SDK updates)')"
                 >
                   Details
+                  <a
+                    href="https://github.com/Moondiidev/FlappyLegends"
+                    target="_blank"
+                    class="button-link"
+                  >
+                    GitHub
+                  </a>
                 </button>
               </div>
             </div>
