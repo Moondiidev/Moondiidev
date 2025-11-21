@@ -319,26 +319,3 @@ body {
     top: 30%;
   }
 }
-
-.github-button {
-  margin-top: 12px;
-  display: inline-flex;
-  align-items: center;
-  padding: 8px 14px;
-  border-radius: 8px;
-  background-color: #24292e; /* GitHub black */
-  color: white;
-  font-weight: 500;
-  text-decoration: none;
-  transition: 0.2s ease;
-}
-
-.github-button:hover {
-  background-color: #000000;
-  transform: translateY(-1px);
-}
-
-.github-button::before {
-  content: "🐙 ";
-  margin-right: 6px;
-}
