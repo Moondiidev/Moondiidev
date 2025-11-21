@@ -311,7 +311,11 @@
                 </div>
                 <button
                   class="details-button"
-                  onclick="showDetails('Painty Road', 'Created an award-winning hyper casual 3D action game (Unity 3D, C#, Android) (02/2021) (now retired due to Play Store SDK updates)')"
+                  onclick="showDetails(
+                  'Painty Road',
+                  'Created an award-winning hyper casual 3D action game (Unity 3D, C#, Android) (02/2021) (now retired due to Play Store SDK updates)',
+                  'https://github.com/Moondiidev/PaintyRoad'
+                )"
                 >
                   Details
                 </button>
@@ -338,7 +342,11 @@
                 </div>
                 <button
                   class="details-button"
-                  onclick="showDetails('Flappy Legends: Birds Adventure', 'Created a 2D pixelated game that expands upon the 2014 hit game Flappy Bird. Included 3 game modes, 4 bosses, 10+ characters, 5+ power ups and cutscenes (Unity 2D, C#, Android). Integrated Google leaderboards, Social Media score sharing, in-app purchasing, and Google Analytics (12/2020) (now retired due to Play Store SDK updates)')"
+                  onclick="showDetails(
+                  'Flappy Legends: Birds Adventure',
+                  'Created a 2D pixelated game that expands upon the 2014 hit game Flappy Bird. Included 3 game modes, 4 bosses, 10+ characters, 5+ power ups and cutscenes (Unity 2D, C#, Android). Integrated Google leaderboards, Social Media score sharing, in-app purchasing, and Google Analytics (12/2020) (now retired due to Play Store SDK updates)',
+                  'https://github.com/Moondiidev/FlappyLegends'
+                )"
                 >
                   Details
                 </button>
@@ -374,15 +382,17 @@
         <h2 class="text-2xl font-bold mb-4" id="project-title">
           Project Details
         </h2>
+
         <p id="project-details" class="text-lg mb-4"></p>
 
         <a
-          id="project-github"
+          id="github-link"
           href="#"
           target="_blank"
-          class="px-4 py-2 bg-gray-700 text-white rounded hover:bg-gray-600 block mb-3"
+          class="inline-block px-4 py-2 mb-4 bg-gray-700 text-white rounded hover:bg-gray-600 transition"
+          style="display: none"
         >
-          View GitHub →
+          View on GitHub
         </a>
 
         <button
