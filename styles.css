@@ -297,6 +297,7 @@ body {
 @media (orientation: portrait) or (max-width: 768px) {
   #floor {
     width: 60%;
+    bottom: 40%;
   }
 }
 
@@ -316,6 +317,6 @@ body {
 @media screen and (max-width: 768px) {
   .background-title {
     font-size: 3rem;
-    top: 70%;
+    top: 50%;
   }
 }
