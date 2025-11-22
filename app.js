@@ -387,6 +387,7 @@ function initVideoControls() {
         if (playButton) {
           playButton.style.display = "none";
         }
+        video.muted = false; // Unmute the video
         video.play();
       }
     });
