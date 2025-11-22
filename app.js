@@ -322,19 +322,6 @@ function initVideoControls() {
   videos.forEach((video) => {
     const loader = video.parentElement.querySelector(".loader");
 
-    // --- iOS fullscreen fix ---
-    const isiOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
-
-    if (isiOS) {
-      // Remove inline playback so iOS will fullscreen on tap
-      video.removeAttribute("playsinline");
-      video.removeAttribute("webkit-playsinline");
-
-      // Must add native controls so iOS allows fullscreen
-      video.setAttribute("controls", "controls");
-    }
-    // --- end fullscreen fix ---
-
     if (isComputer) {
       video.load();
       video.removeAttribute("autoplay");
@@ -373,6 +360,18 @@ function initVideoControls() {
 
     // Event listener for click to go fullscreen
     video.addEventListener("click", () => {
+      const isiOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
+
+      if (isiOS) {
+        // Simulate fullscreen
+        video.classList.add("video-fullscreen");
+        video.play();
+      } else {
+        // Real fullscreen for Android + Desktop
+        if (video.requestFullscreen) video.requestFullscreen();
+        video.play();
+      }
+
       if (isComputer) {
         if (video.requestFullscreen) {
           video.requestFullscreen();
@@ -397,6 +396,7 @@ function initVideoControls() {
       if (!document.fullscreenElement) {
         video.muted = true; // Mute the video
         video.play();
+        video.classList.remove("video-fullscreen");
       }
     });
   });

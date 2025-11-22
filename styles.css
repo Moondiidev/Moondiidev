@@ -573,3 +573,14 @@ body {
   text-align: center;
   color: #f5e9d2; /* warm highlight */
 }
+
+.video-fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw !important;
+  height: 100vh !important;
+  object-fit: contain;
+  background: black;
+  z-index: 999999;
+}
