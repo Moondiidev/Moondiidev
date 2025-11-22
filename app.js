@@ -194,31 +194,12 @@ function contentAnimationForGames() {
   });
 }
 
-function setEqualHeightForSlides() {
-  const slides = document.querySelectorAll(".swiper-slide");
-  let maxHeight = 0;
-
-  // Calculate the maximum height
-  slides.forEach((slide) => {
-    const slideHeight = slide.offsetHeight;
-    if (slideHeight > maxHeight) {
-      maxHeight = slideHeight;
-    }
-  });
-
-  // Set the height for all slides
-  slides.forEach((slide) => {
-    slide.style.height = `${maxHeight}px`;
-  });
-}
-
 // Call the function after the Swiper initialization
 function initializePage() {
   console.log("Initializing page...");
   initSwiper(".swiper-container-1", swiper1Options);
   initSwiper(".swiper-container-2", swiper2Options);
   initVideoControls();
-  setEqualHeightForSlides(); // Set equal height for slides
   console.log("Page initialized.");
 }
 
