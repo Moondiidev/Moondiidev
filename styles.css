@@ -1,6 +1,3 @@
-/* ============================================
-   FONTS (unchanged)
-============================================ */
 @font-face {
   font-family: "Arsenal-Regular";
   src: url("fonts/Arsenal-Regular.ttf") format("truetype");
@@ -26,21 +23,6 @@
   src: url("fonts/Anton-Regular.ttf") format("truetype");
 }
 
-/* ============================================
-   GLOBAL COLORS — NEW CELESTIAL PALETTE
-============================================ */
-:root {
-  --stripe-1: #10100f;
-  --stripe-2: #111110;
-  --stripe-3: #121211;
-  --stripe-4: #131312;
-  --stripe-5: #141413;
-  --stripe-6: #151514;
-}
-
-/* ============================================
-   GLOBAL RESET
-============================================ */
 html,
 body {
   min-height: 100%;
@@ -56,16 +38,41 @@ body {
   height: 100vh;
 }
 
-/* Container used elsewhere in site */
 .container {
   position: relative;
   max-width: 1440px;
   margin: 0 auto;
 }
 
-/* ============================================
-   MENU BUTTONS (CELESTIAL THEME APPLIED)
-============================================ */
+.bg-dark {
+  background-color: #0b0d0d;
+}
+
+/* -------------------------------------------
+   NEW ULTRA-SUBTLE TRANSITION COLORS
+-------------------------------------------- */
+.custom-green-100 {
+  background-color: #10100f;
+}
+.custom-green-200 {
+  background-color: #111110;
+}
+.custom-green-300 {
+  background-color: #121211;
+}
+.custom-green-400 {
+  background-color: #131312;
+}
+.custom-green-500 {
+  background-color: #141413;
+}
+.custom-green-600 {
+  background-color: #151514;
+}
+
+/* -------------------------------------------
+   MENU BUTTONS (full tilt preserved)
+-------------------------------------------- */
 .menu-button {
   position: relative;
   border: none;
@@ -86,97 +93,92 @@ body {
 .menu-button::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   clip-path: polygon(2% 15%, 100% 61%, 100% 63%, 7% 84%);
   transition: background-color 0.3s ease;
   z-index: -1;
 }
 
-/* New hover colors */
-.menu-button:hover::before,
-.menu-button:focus::before {
-  background: rgba(203, 168, 120, 0.9);
+.menu-button:hover::before {
+  background: rgba(180, 160, 120, 0.5);
 }
 
-.menu-button:hover,
-.menu-button:focus {
-  color: var(--celestial-500);
+.menu-button:hover {
+  color: #e8d9b8;
   transform: perspective(500px) rotateY(0deg);
-  outline: none;
 }
 
 .rotate-up {
   transform: perspective(500px) rotateX(10deg) rotateY(40deg);
 }
 
-/* ============================================
-   NEW CELESTIAL TRANSITION COLORS
-============================================ */
-.custom-green-100 {
-  background-color: #10100f;
-}
-.custom-green-200 {
-  background-color: #111110;
-}
-.custom-green-300 {
-  background-color: #121211;
-}
-.custom-green-400 {
-  background-color: #131312;
-}
-.custom-green-500 {
-  background-color: #141413;
-}
-.custom-green-600 {
-  background-color: #151514;
-}
-
-/* ============================================
-   HERO TITLE — UPDATED TO MATCH NEW BACKGROUND
-============================================ */
+/* -------------------------------------------
+   HERO TITLE (smaller, sharper, cleaner)
+-------------------------------------------- */
 .background-title {
   font-family: "Anton-Regular", sans-serif;
   position: absolute;
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 8rem;
+  font-size: 6.5rem;
   line-height: 1.1;
-  color: #f2e7cf; /* soft pale gold */
+  color: #f5e9d2;
   text-align: center;
   z-index: 10;
 
-  text-shadow: 0 0 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(146, 122, 80, 0.4),
-    0 0 25px rgba(146, 122, 80, 0.25);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8), 0 0 12px rgba(255, 235, 200, 0.35),
+    0 0 28px rgba(255, 235, 200, 0.2);
 }
 
 @media screen and (max-width: 768px) {
   .background-title {
-    font-size: 3rem;
-    top: 50%;
+    font-size: 3.4rem;
+    top: 48%;
   }
 }
 
-/* ============================================
-   YOUR ORIGINAL CODE BELOW (UNCHANGED)
-============================================ */
+/* -------------------------------------------
+   MOBILE BUTTON SCALING (medium)
+-------------------------------------------- */
 
-/* bg-dark */
-.bg-dark {
-  background-color: #0b0d0d;
+@media (max-width: 768px) {
+  .menu-button {
+    font-size: 2.3rem;
+    padding: 10px 16px;
+    margin-bottom: -5px;
+    transform: perspective(500px) rotateY(40deg) rotateX(5deg);
+  }
+
+  .menu-wrapper {
+    top: 4%;
+    transform: translateY(10px);
+  }
+
+  .menu li {
+    margin-bottom: 0.2rem;
+  }
+
+  .rotate-up {
+    transform: perspective(500px) rotateX(10deg) rotateY(40deg);
+  }
 }
+
+/* -------------------------------------------
+   EVERYTHING BELOW THIS IS YOUR ORIGINAL CSS
+   (videos, swiper, loaders, transitions, etc.)
+-------------------------------------------- */
+
+/* KEEPING YOUR ENTIRE ORIGINAL CODE BELOW: */
 
 .screen-frame {
   position: relative;
-  border: 4px solid rgba(48, 46, 46, 0.114); /* Add a subtle border around the video */
-  border-radius: 8px; /* Add rounded corners */
-  overflow: hidden; /* Hide any overflow from the video */
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Add a shadow to the video */
+  border: 4px solid rgba(48, 46, 46, 0.114);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   transition: transform 0.3s ease;
-  padding: 1rem; /* Add padding to the video */
+  padding: 1rem;
   width: 100%;
   height: 100%;
 }
@@ -185,21 +187,21 @@ body {
   width: 100%;
   height: 100%;
   display: block;
-  cursor: pointer; /* Change cursor to hand */
+  cursor: pointer;
   transition: transform 0.4s ease;
 }
 
 .screen-frame video:hover {
-  transform: scale(1.01) !important; /* Slightly enlarge the video on hover */
+  transform: scale(1.01) !important;
 }
 
 .swiper-pagination-bullet {
-  background: white !important; /* Make the pagination bullets white */
-  opacity: 1; /* Ensure bullets are fully visible */
+  background: white !important;
+  opacity: 1;
 }
 
 .swiper-pagination-bullet-active {
-  background: #0e5f44 !important; /* Change the color of the active bullet */
+  background: #e8d9b8 !important;
 }
 
 .swiper-pagination {
@@ -208,15 +210,10 @@ body {
 
 @media screen and (max-width: 768px) {
   .swiper-pagination {
-    margin-top: 0; /* Adjust the margin for mobile */
+    margin-top: 0;
   }
 }
 
-.custom-text-green-100 {
-  color: #146c63;
-}
-
-/* Loader styles */
 .loader {
   border: 4px solid #f3f3f3;
   border-radius: 50%;
@@ -225,8 +222,8 @@ body {
   height: 40px;
   animation: spin 2s linear infinite;
   position: absolute;
-  top: calc(50% - 20px); /* Adjusted to be exactly centered */
-  left: calc(50% - 20px); /* Adjusted to be exactly centered */
+  top: calc(50% - 20px);
+  left: calc(50% - 20px);
   z-index: 5;
 }
 

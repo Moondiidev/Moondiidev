@@ -13,7 +13,6 @@
   </head>
 
   <body class="font-sans antialiased text-white bg-dark">
-    <!-- Inject common HTML -->
     <script>
       function insertTemplateAtBeginning(content) {
         document.body.insertAdjacentHTML("afterbegin", content);
@@ -31,29 +30,24 @@
         .catch((error) => console.error("Error loading common.html:", error));
     </script>
 
-    <!-- MAIN CONTENT -->
     <main data-barba="container" data-barba-namespace="home">
-      <!-- FULL WIDTH HERO -->
       <section class="w-full">
         <div
           class="relative h-screen w-full bg-cover bg-center"
-          style="background-image: url('images/bg_hero.png')"
+          style="background-image: url('images/bg_hero.webp')"
         >
-          <!-- Subtle gradient -->
           <div
             class="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent via-black/10 to-black/40"
           ></div>
 
-          <!-- Name Title -->
           <div class="background-title z-10 text-center">
             Munkhbilguun <br />
             Munkhdemberel
           </div>
 
-          <!-- Buttons inside centered container -->
           <div class="container relative h-full">
-            <div class="absolute md:top-20 top-0 left-0 p-10 z-20">
-              <ul class="menu md:-space-y-14">
+            <div class="absolute md:top-20 top-0 left-0 p-10 z-20 menu-wrapper">
+              <ul class="menu md:-space-y-14 space-y-6">
                 <li>
                   <a
                     href="websites.html"
@@ -71,12 +65,8 @@
           </div>
         </div>
       </section>
-
-      <!-- FLOOR -->
-      <div id="floor"></div>
     </main>
 
-    <!-- Libraries -->
     <script src="https://unpkg.com/@barba/core"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
