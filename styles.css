@@ -30,12 +30,12 @@
    GLOBAL COLORS — NEW CELESTIAL PALETTE
 ============================================ */
 :root {
-  --stripe-1: #181410;
-  --stripe-2: #2f251b;
-  --stripe-3: #473927;
-  --stripe-4: #5f4d33;
-  --stripe-5: #786240;
-  --stripe-6: #927a50;
+  --stripe-1: #10100f;
+  --stripe-2: #111110;
+  --stripe-3: #121211;
+  --stripe-4: #131312;
+  --stripe-5: #141413;
+  --stripe-6: #151514;
 }
 
 /* ============================================
@@ -116,22 +116,22 @@ body {
    NEW CELESTIAL TRANSITION COLORS
 ============================================ */
 .custom-green-100 {
-  background-color: var(--stripe-1);
+  background-color: #10100f;
 }
 .custom-green-200 {
-  background-color: var(--stripe-2);
+  background-color: #111110;
 }
 .custom-green-300 {
-  background-color: var(--stripe-3);
+  background-color: #121211;
 }
 .custom-green-400 {
-  background-color: var(--stripe-4);
+  background-color: #131312;
 }
 .custom-green-500 {
-  background-color: var(--stripe-5);
+  background-color: #141413;
 }
 .custom-green-600 {
-  background-color: var(--stripe-6);
+  background-color: #151514;
 }
 
 /* ============================================
