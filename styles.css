@@ -109,6 +109,15 @@ body {
   transform: perspective(500px) rotateY(0deg);
 }
 
+@media (max-width: 768px) {
+  .menu-button {
+    position: fixed !important;
+    top: 1rem !important;
+    left: 1rem !important;
+    z-index: 50 !important;
+  }
+}
+
 .rotate-up {
   transform: perspective(500px) rotateX(10deg) rotateY(40deg);
 }
@@ -215,6 +224,28 @@ body {
 @media screen and (max-width: 768px) {
   .swiper-pagination {
     margin-top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .screen-frame {
+    padding: 0.75rem !important;
+    margin-top: 0 !important;
+  }
+
+  .video-title {
+    margin-top: 0.75rem !important;
+  }
+
+  .video-description {
+    font-size: 0.85rem !important;
+    line-height: 1.3rem !important;
+    margin-top: 0.5rem !important;
+  }
+
+  .swiper-slide {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
   }
 }
 
@@ -500,4 +531,11 @@ body {
   .swiper-button-prev-2::after {
     font-size: 17px;
   }
+}
+.menu-button.home-link {
+  position: fixed !important;
+}
+
+.menu-wrapper .menu-button {
+  position: static !important;
 }
