@@ -146,21 +146,22 @@ body {
   .menu-button {
     font-size: 2.3rem;
     padding: 10px 16px;
-    margin-bottom: -5px;
+    margin-bottom: 0;
     transform: perspective(500px) rotateY(40deg) rotateX(5deg);
+  }
+
+  /* Tighten spacing between the buttons */
+  .menu li {
+    margin-bottom: -0.6rem; /* was 0.2rem */
+  }
+
+  /* Reduce Tailwind space-y effect override */
+  .menu {
+    gap: 0.4rem !important; /* forces spacing to be tight */
   }
 
   .menu-wrapper {
     top: 4%;
-    transform: translateY(10px);
-  }
-
-  .menu li {
-    margin-bottom: 0.2rem;
-  }
-
-  .rotate-up {
-    transform: perspective(500px) rotateX(10deg) rotateY(40deg);
   }
 }
 
