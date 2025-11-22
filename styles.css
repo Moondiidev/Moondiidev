@@ -316,6 +316,6 @@ body {
 @media screen and (max-width: 768px) {
   .background-title {
     font-size: 3rem;
-    top: 30%;
+    top: 70%;
   }
 }
