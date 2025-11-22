@@ -33,8 +33,10 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  color: #fafafa;
+  color: #e8e8e8; /* Softer white = better contrast */
   font-family: "Arsenal-Regular", sans-serif !important;
+  font-size: 17px; /* Slight bump improves readability */
+  line-height: 1.6; /* More space between lines */
 }
 
 body {
@@ -46,9 +48,9 @@ body {
 
 .container {
   position: relative;
-  max-width: 1440px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
 }
 
 .bg-dark {
@@ -202,6 +204,9 @@ body {
   padding: 1rem;
   width: 100%;
   height: auto;
+  max-width: 850px;
+  margin: 0 auto;
+  margin-bottom: 1.6rem;
 }
 
 .screen-frame video {
@@ -254,6 +259,7 @@ body {
   .swiper-slide {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
+    text-align: center !important;
   }
 }
 
@@ -327,13 +333,17 @@ body {
   text-align: center;
   margin: 2rem 0 1rem 0;
 }
+.screen-frame {
+  text-align: center;
+}
 
 .video-description {
   font-size: 1rem;
-  text-align: center;
-  line-height: 1.5;
+  color: #d5d5d5;
+  max-width: 600px;
+  margin: 0.7rem auto 1.4rem auto;
+  line-height: 1.55;
   margin-bottom: 2rem;
-  max-width: 90%;
   white-space: normal;
 }
 
@@ -546,4 +556,20 @@ body {
 
 .menu-wrapper .menu-button {
   position: static !important;
+}
+
+/* universal portfolio card wrapper */
+.portfolio-card {
+  width: 100%;
+  max-width: 850px; /* prevents overly wide panels */
+  margin: 0 auto;
+}
+.section-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 1rem;
+  margin-top: 2.4rem;
+  text-align: center;
+  color: #f5e9d2; /* warm highlight */
 }
