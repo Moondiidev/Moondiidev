@@ -322,6 +322,19 @@ function initVideoControls() {
   videos.forEach((video) => {
     const loader = video.parentElement.querySelector(".loader");
 
+    // --- iOS fullscreen fix ---
+    const isiOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
+
+    if (isiOS) {
+      // Remove inline playback so iOS will fullscreen on tap
+      video.removeAttribute("playsinline");
+      video.removeAttribute("webkit-playsinline");
+
+      // Must add native controls so iOS allows fullscreen
+      video.setAttribute("controls", "controls");
+    }
+    // --- end fullscreen fix ---
+
     if (isComputer) {
       video.load();
       video.removeAttribute("autoplay");
