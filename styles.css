@@ -23,6 +23,10 @@
   src: url("fonts/Anton-Regular.ttf") format("truetype");
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 html,
 body {
   min-height: 100%;
@@ -36,6 +40,8 @@ body {
 body {
   position: relative;
   height: 100vh;
+  overscroll-behavior-y: none;
+  touch-action: manipulation;
 }
 
 .container {
@@ -89,6 +95,8 @@ body {
   border-radius: 8px;
   background: transparent;
   display: inline-block;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
 }
 
 .menu-button::before {

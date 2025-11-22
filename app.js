@@ -345,7 +345,6 @@ function initVideoControls() {
       video.load();
       video.removeAttribute("autoplay");
     } else {
-      video.autoplay = true;
       video.muted = true;
     }
 
@@ -380,21 +379,23 @@ function initVideoControls() {
 
     // Event listener for click to go fullscreen
     video.addEventListener("click", () => {
-      if (video.requestFullscreen) {
-        video.requestFullscreen();
-      } else if (video.mozRequestFullScreen) {
-        video.mozRequestFullScreen(); // Firefox
-      } else if (video.webkitRequestFullscreen) {
-        video.webkitRequestFullscreen(); // Chrome, Safari and Opera
-      } else if (video.msRequestFullscreen) {
-        video.msRequestFullscreen(); // IE/Edge
+      if (isComputer) {
+        if (video.requestFullscreen) {
+          video.requestFullscreen();
+        } else if (video.mozRequestFullScreen) {
+          video.mozRequestFullScreen(); // Firefox
+        } else if (video.webkitRequestFullscreen) {
+          video.webkitRequestFullscreen(); // Chrome, Safari and Opera
+        } else if (video.msRequestFullscreen) {
+          video.msRequestFullscreen(); // IE/Edge
+        }
+        const playButton = video.parentElement.querySelector(".play-button");
+        if (playButton) {
+          playButton.style.display = "none";
+        }
+        video.muted = false; // Unmute the video
+        video.play();
       }
-      const playButton = video.parentElement.querySelector(".play-button");
-      if (playButton) {
-        playButton.style.display = "none";
-      }
-      video.muted = false; // Unmute the video
-      video.play();
     });
 
     // Event listener for exiting fullscreen
