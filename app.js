@@ -318,88 +318,96 @@ function initVideoControls() {
   console.log("Found videos:", videos);
 
   const isComputer = /Windows|Macintosh|Linux/.test(navigator.userAgent);
+  const isiOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
 
   videos.forEach((video) => {
     const loader = video.parentElement.querySelector(".loader");
+    const playButton = video.parentElement.querySelector(".play-button");
 
-    if (isComputer) {
-      video.load();
-      video.removeAttribute("autoplay");
-    } else {
+    // ----------------------------
+    // iOS FIX (ALLOWS SOUND + TAP FULLSCREEN)
+    // ----------------------------
+    if (isiOS) {
+      // iOS cannot play audio in inline mode → must disable playsinline
+      video.removeAttribute("playsinline");
+      video.removeAttribute("webkit-playsinline");
+
+      // Required for fullscreen + audio
+      video.setAttribute("controls", "controls");
+
+      // Reset autoplay state so iOS allows sound
+      video.pause();
+      video.currentTime = 0;
       video.muted = true;
     }
+    // ----------------------------
 
-    // Show loader and hide video initially
+    // Hide video until it's ready
     video.style.display = "none";
     loader.style.display = "block";
 
-    // Combined event listener for video readiness
+    // When the video can play
     const handleVideoReady = () => {
-      if (loader) {
-        loader.style.display = "none";
-      }
+      loader.style.display = "none";
       video.style.display = "block";
+
       if (isComputer) {
-        const playButton = video.parentElement.querySelector(".play-button");
-        if (playButton) {
-          playButton.style.display = "none";
-        }
-        video.play().catch(() => {});
+        if (playButton) playButton.style.display = "none";
       }
     };
 
     video.addEventListener("canplaythrough", handleVideoReady);
 
-    // Fallback to hide loader after a certain time
+    // Fallback after 5 seconds
     setTimeout(() => {
-      if (loader) {
-        loader.style.display = "none";
-      }
+      loader.style.display = "none";
       video.style.display = "block";
-    }, 5000); // 5 seconds timeout as a fallback
+    }, 5000);
 
-    // Event listener for click to go fullscreen
+    // ----------------------------
+    // CLICK → FULLSCREEN + UNMUTE LOGIC
+    // ----------------------------
     video.addEventListener("click", () => {
-      const isiOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
+      // MUST be inside the same click event for iOS
       video.muted = false;
 
       if (isiOS) {
-        // Simulate fullscreen
-        video.classList.add("video-fullscreen");
-        video.play();
+        // iOS: native fullscreen automatically handled by tap
+        // Just play with audio
+        video.play().catch((err) => console.log("iOS playback blocked:", err));
       } else {
-        // Real fullscreen for Android + Desktop
-        if (video.requestFullscreen) video.requestFullscreen();
-        video.play();
-      }
-
-      if (isComputer) {
+        // Android + Desktop: request fullscreen
         if (video.requestFullscreen) {
           video.requestFullscreen();
-        } else if (video.mozRequestFullScreen) {
-          video.mozRequestFullScreen(); // Firefox
         } else if (video.webkitRequestFullscreen) {
-          video.webkitRequestFullscreen(); // Chrome, Safari and Opera
+          video.webkitRequestFullscreen();
+        } else if (video.mozRequestFullScreen) {
+          video.mozRequestFullScreen();
         } else if (video.msRequestFullscreen) {
-          video.msRequestFullscreen(); // IE/Edge
+          video.msRequestFullscreen();
         }
-        const playButton = video.parentElement.querySelector(".play-button");
-        if (playButton) {
-          playButton.style.display = "none";
-        }
-        video.muted = false; // Unmute the video
-        video.play();
-      }
-    });
 
-    // Event listener for exiting fullscreen
+        video.play().catch((err) => console.log("Playback blocked:", err));
+      }
+
+      // Hide play button once playing
+      if (playButton) playButton.style.display = "none";
+    });
+    // ----------------------------
+
+    // ----------------------------
+    // Exit fullscreen handler
+    // ----------------------------
     document.addEventListener("fullscreenchange", () => {
       if (!document.fullscreenElement) {
-        video.muted = true; // Mute the video
-        video.play();
-        video.classList.remove("video-fullscreen");
+        // When exiting fullscreen
+        if (!isiOS) {
+          video.muted = true;
+          video.play();
+        }
       }
     });
+    // ----------------------------
   });
 
   console.log("Video controls initialized.");
