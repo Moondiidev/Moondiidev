@@ -361,6 +361,7 @@ function initVideoControls() {
     // Event listener for click to go fullscreen
     video.addEventListener("click", () => {
       const isiOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
+      video.muted = false;
 
       if (isiOS) {
         // Simulate fullscreen
@@ -386,7 +387,6 @@ function initVideoControls() {
         if (playButton) {
           playButton.style.display = "none";
         }
-        video.muted = false; // Unmute the video
         video.play();
       }
     });
