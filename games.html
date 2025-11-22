@@ -16,7 +16,7 @@
     <script>
       // Function to insert HTML content at the beginning of the body
       function insertTemplateAtBeginning(content) {
-        document.body.insertAdjacentHTML("beforeend", content);
+        document.body.insertAdjacentHTML("afterbegin", content);
         // After insertion, initialize scripts that depend on this content
         initializeScripts();
       }
