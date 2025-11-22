@@ -13,7 +13,7 @@
   </head>
 
   <body class="font-sans antialiased text-white bg-dark">
-    <!-- Load Common Elements -->
+    <!-- Inject common HTML -->
     <script>
       function insertTemplateAtBeginning(content) {
         document.body.insertAdjacentHTML("afterbegin", content);
@@ -28,35 +28,30 @@
       fetch("common.html")
         .then((response) => response.text())
         .then((data) => insertTemplateAtBeginning(data))
-        .catch((err) => console.error("Error loading common.html:", err));
+        .catch((error) => console.error("Error loading common.html:", error));
     </script>
 
-    <!-- MAIN (NO CONTAINER → FULL WIDTH HERO) -->
+    <!-- MAIN CONTENT -->
     <main data-barba="container" data-barba-namespace="home">
-      <!-- FULL WIDTH HERO SECTION -->
+      <!-- FULL WIDTH HERO -->
       <section class="w-full">
-        <!-- full-width background -->
         <div
           class="relative h-screen w-full bg-cover bg-center"
           style="background-image: url('images/bg_hero.png')"
         >
-          <!-- subtle atmospheric layers -->
+          <!-- Subtle gradient -->
           <div
-            class="absolute inset-0 pointer-events-none bg-[rgba(0,0,0,0.25)]"
-          ></div>
-          <div
-            class="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent via-black/20 to-black/40"
+            class="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent via-black/10 to-black/40"
           ></div>
 
-          <!-- full-width centered name -->
-          <div class="background-title z-10">
+          <!-- Name Title -->
+          <div class="background-title z-10 text-center">
             Munkhbilguun <br />
             Munkhdemberel
           </div>
 
-          <!-- CONTAINER FOR BUTTONS ONLY -->
+          <!-- Buttons inside centered container -->
           <div class="container relative h-full">
-            <!-- menu aligned left INSIDE container -->
             <div class="absolute md:top-20 top-0 left-0 p-10 z-20">
               <ul class="menu md:-space-y-14">
                 <li>
@@ -77,11 +72,11 @@
         </div>
       </section>
 
-      <!-- FLOOR ELEMENT -->
+      <!-- FLOOR -->
       <div id="floor"></div>
     </main>
 
-    <!-- SCRIPTS -->
+    <!-- Libraries -->
     <script src="https://unpkg.com/@barba/core"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
