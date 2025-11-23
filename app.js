@@ -25,7 +25,6 @@ const swiper2Options = {
   spaceBetween: 40,
   loop: true,
   initialSlide: 1,
-  loopAdditionalSlides: 1,
 
   pagination: {
     el: ".swiper-pagination-2",
