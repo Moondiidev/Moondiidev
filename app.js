@@ -206,13 +206,13 @@ function initializePage() {
   initSwiper(".swiper-container-1", swiper1Options);
   initSwiper(".swiper-container-2", swiper2Options);
   initVideoControls();
-  initLogoAnimations();
-  initMistDrift();
 
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
   if (isMobile) {
     setEqualHeightForSlides();
+  } else {
+    initMistDrift();
   }
 
   console.log("Page initialized.");
@@ -530,17 +530,6 @@ document.addEventListener("mousemove", (e) => {
     ease: "power2.out",
   });
 });
-
-function initLogoAnimations() {
-  const logo = document.querySelector(".site-logo");
-  if (!logo) return;
-
-  // Fade-in once Barba finishes entering
-  setTimeout(() => {
-    logo.style.opacity = "1";
-    logo.style.transform = "translateY(0px)";
-  }, 350); // sync with your page transition timing
-}
 
 // ===================================================
 // STAR EFFECTS: Flicker + Shooting Stars + Drift
