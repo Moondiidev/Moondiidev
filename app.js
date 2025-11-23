@@ -438,9 +438,25 @@ function initVideoControls() {
 
 // Ensure page initialization after Barba.js transitions
 barba.hooks.afterEnter((data) => {
-  console.log("Barba.js afterEnter hook called. Reinitializing page...");
   requestAnimationFrame(() => {
     initializePage();
+
+    // HERO ANIMATIONS RUN HERE – NO DOMContentLoaded
+    gsap.from(".background-title", {
+      opacity: 0,
+      y: 20,
+      duration: 1.1,
+      ease: "power3.out",
+    });
+
+    gsap.from(".menu-button", {
+      opacity: 0,
+      y: 18,
+      duration: 1,
+      ease: "power3.out",
+      stagger: 0.12,
+      delay: 0.4,
+    });
   });
 });
 
