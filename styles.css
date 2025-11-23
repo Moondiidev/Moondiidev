@@ -633,3 +633,35 @@ body {
   margin: 0.8rem auto 0 auto;
   border-radius: 2px;
 }
+
+/* Desktop logo tuning */
+.site-logo {
+  position: fixed;
+  top: 42px; /* gives breathing room */
+  left: 48px; /* aligns visually with nav text column */
+  z-index: 500;
+  pointer-events: none;
+}
+
+.site-logo img {
+  width: 68px; /* ideal visibility */
+  height: auto;
+  opacity: 0.88; /* subtle but noticeable */
+  transition: opacity 0.3s ease;
+}
+
+.site-logo img:hover {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .site-logo {
+    top: 22px;
+    left: 26px;
+  }
+
+  .site-logo img {
+    width: 46px; /* smaller for mobile layout */
+    opacity: 0.75; /* lighter presence */
+  }
+}
