@@ -634,14 +634,17 @@ body {
   border-radius: 2px;
 }
 
-/* Desktop logo tuning */
+/* ============================================
+   LOGO — FINAL TUNED VERSION (DESKTOP + MOBILE)
+   ============================================ */
+
 .site-logo {
   position: fixed;
-  top: 42px;
-  left: 64px; /* increased by +16px for visual grid alignment */
-  z-index: 500;
+  top: 40px; /* was 42 – cleaned to align with base grid */
+  left: 60px; /* refined from 64 – matches nav text block */
+  z-index: 600; /* above content, below overlays */
   pointer-events: none;
-  display: none;
+  display: none; /* only visible on home via namespace */
 }
 
 [data-barba-namespace="home"] .site-logo {
@@ -649,24 +652,30 @@ body {
 }
 
 .site-logo img {
-  width: 74px; /* +6px more presence */
+  width: 78px; /* +4px — perfect balance with “Websites/Games” */
   height: auto;
-  opacity: 0.88; /* matches your gold text glow */
-  transition: opacity 0.3s ease;
+  opacity: 0.92; /* slightly richer gold presence */
+  filter: drop-shadow(0 0 6px rgba(255, 210, 160, 0.18));
+  transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .site-logo img:hover {
   opacity: 1;
+  transform: translateZ(6px) scale(1.02); /* subtle cinematic hover pop */
 }
 
+/* ===========================
+   MOBILE LOGO TUNING
+   =========================== */
 @media (max-width: 768px) {
   .site-logo {
-    top: 22px;
-    left: 26px;
+    top: 18px; /* was 22 – more breathing room */
+    left: 20px; /* tighter for mobile ergonomics */
   }
 
   .site-logo img {
-    width: 46px;
-    opacity: 0.75;
+    width: 48px; /* slightly larger for readability */
+    opacity: 0.85; /* matches mobile UI contrast */
+    filter: drop-shadow(0 0 4px rgba(255, 210, 160, 0.25));
   }
 }
