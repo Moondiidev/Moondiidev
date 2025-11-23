@@ -1,5 +1,6 @@
 // Global variable to store the current transition type
 let currentTransitionType = "type1";
+let starsInitialized = false;
 
 // Initialize first swiper with default options
 const swiper1Options = {
@@ -48,6 +49,8 @@ const swiper2Options = {
     },
   },
 };
+
+document.addEventListener("DOMContentLoaded", initStars);
 
 function showDetails(title, description) {
   document.getElementById("project-title").textContent = title;
@@ -461,6 +464,8 @@ barba.hooks.afterEnter((data) => {
         gsap.set(".menu-button", { clearProps: "transform" });
       },
     });
+
+    initStars();
   });
 });
 
@@ -534,4 +539,115 @@ function initLogoAnimations() {
     logo.style.opacity = "1";
     logo.style.transform = "translateY(0px)";
   }, 350); // sync with your page transition timing
+}
+
+// ===================================================
+// STAR EFFECTS: Flicker + Shooting Stars + Drift
+// ===================================================
+
+function initStars() {
+  const starLayer = document.getElementById("star-layer");
+  if (!starLayer) return;
+
+  // Clear old stars (Barba.js)
+  while (starLayer.firstChild) {
+    starLayer.removeChild(starLayer.firstChild);
+  }
+
+  const starCount = 45;
+  const minDistance = 80;
+  const positions = [];
+
+  function generatePosition() {
+    let x, y, ok;
+
+    do {
+      ok = true;
+      x = Math.random() * window.innerWidth;
+      y = Math.random() * window.innerHeight;
+
+      for (const p of positions) {
+        if (Math.hypot(p.x - x, p.y - y) < minDistance) {
+          ok = false;
+          break;
+        }
+      }
+    } while (!ok);
+
+    positions.push({ x, y });
+    return { x, y };
+  }
+
+  // ---- STAR CREATION ----
+  for (let i = 0; i < starCount; i++) {
+    const { x, y } = generatePosition();
+
+    const star = document.createElement("div");
+    star.classList.add("star");
+
+    // Size cluster
+    const r = Math.random();
+    let size, baseOpacity, flickerRange;
+
+    if (r < 0.7) {
+      // 70% small stars
+      size = 1.5;
+      baseOpacity = 0.18;
+      flickerRange = 0.05;
+    } else if (r < 0.95) {
+      // 25% medium stars
+      size = 2.5;
+      baseOpacity = 0.35;
+      flickerRange = 0.2;
+    } else {
+      // 5% bright stars
+      size = 3.5 + Math.random() * 1.2; // 3.5–4.7px
+      baseOpacity = 0.65;
+      flickerRange = 0.35;
+    }
+
+    star.style.width = size + "px";
+    star.style.height = size + "px";
+
+    // Position
+    star.style.left = x + "px";
+    star.style.top = y + "px";
+
+    // Add to DOM
+    starLayer.appendChild(star);
+
+    // ---- FLICKER ANIMATION ----
+    gsap.to(star, {
+      opacity: baseOpacity + Math.random() * flickerRange,
+      duration: Math.random() * 1 + 0.5,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+      delay: Math.random() * 1.4,
+    });
+  }
+
+  // ---- SHOOTING STARS ----
+  function createShootingStar() {
+    const s = document.createElement("div");
+    s.classList.add("shooting-star");
+
+    s.style.left = Math.random() * window.innerWidth * 0.6 + "px";
+    s.style.top = Math.random() * window.innerHeight * 0.3 + "px";
+
+    starLayer.appendChild(s);
+
+    gsap.to(s, {
+      x: 180,
+      y: 110,
+      opacity: 0,
+      duration: 1.1,
+      ease: "power2.out",
+      onComplete: () => s.remove(),
+    });
+  }
+
+  setInterval(() => {
+    if (Math.random() > 0.65) createShootingStar();
+  }, 2000);
 }
