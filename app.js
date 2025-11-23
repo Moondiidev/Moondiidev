@@ -205,8 +205,9 @@ function initializePage() {
   initSwiper(".swiper-container-2", swiper2Options);
   initVideoControls();
 
-  // Run equal height only on mobile
-  if (window.innerWidth < 768) {
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+  if (isMobile) {
     setEqualHeightForSlides();
   }
 
