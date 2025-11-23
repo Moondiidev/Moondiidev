@@ -652,6 +652,14 @@ h3 {
   color: #f5e9d2; /* warm highlight */
 }
 
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 1.8rem;
+    margin-top: 1.6rem;
+    margin-bottom: 0.8rem;
+  }
+}
+
 .video-fullscreen {
   position: fixed;
   top: 0;
