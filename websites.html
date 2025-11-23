@@ -8,6 +8,72 @@
     />
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              // Backgrounds
+              dark: "#0b0b0c",
+              "surface-100": "#0f0f0f",
+              "surface-200": "#141415",
+
+              // Borders
+              "border-light": "#151516",
+
+              // Gold accents
+              gold: "#e6d3ac",
+              "gold-dark": "#4a3c2f",
+              "gold-mid": "#2a241e",
+
+              // Blue cinematic accents
+              bluecine: "#1e4351",
+              "bluecine-dark": "#0f2831",
+
+              // Text colors
+              "text-primary": "#f0f0f0",
+              "text-secondary": "#b3b3b3",
+              "text-muted": "#565656",
+            },
+
+            borderRadius: {
+              base: "16px",
+              cine: "20px",
+              "cine-lg": "24px",
+            },
+
+            boxShadow: {
+              soft: "0 10px 20px rgba(0,0,0,0.45)",
+              deep: "0 20px 38px rgba(0,0,0,0.70)",
+            },
+
+            spacing: {
+              1: "4px",
+              2: "8px",
+              3: "12px",
+              4: "16px",
+              5: "24px",
+              6: "32px",
+              7: "48px",
+            },
+
+            fontFamily: {
+              sans: ["Arsenal-Regular", "sans-serif"],
+            },
+
+            transitionTimingFunction: {
+              cinematic: "cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+            },
+
+            zIndex: {
+              overlay: 9999,
+              transition: 999,
+            },
+          },
+        },
+      };
+    </script>
+
     <link id="main-stylesheet" rel="stylesheet" href="styles.css" />
     <link
       rel="stylesheet"

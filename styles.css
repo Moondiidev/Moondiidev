@@ -79,57 +79,90 @@ body {
   background-color: #151514;
 }
 
-/* -------------------------------------------
-   MENU BUTTONS (full tilt preserved)
--------------------------------------------- */
+/* ===========================================================
+   FAANG-GRADE MEDIUM-TILT MENU BUTTONS
+   – Clean, premium, subtle gold glow
+   – Keeps your existing font + 3D personality
+=========================================================== */
+
 .menu-button {
   position: relative;
   border: none;
-  color: #fafafa;
-  padding: 8px 20px;
-  font-size: 4.25rem;
-  font-weight: bold;
+  color: var(--text-primary, #f5f5f5);
+  padding: 10px 26px;
+  font-size: 4rem;
+  font-weight: 700;
   font-family: "MenuFont", sans-serif !important;
   text-align: left;
-  transition: transform 0.3s ease, color 0.3s ease;
-  transform: perspective(500px) rotateY(40deg);
-  margin-bottom: -15px;
-  border-radius: 8px;
-  background: transparent;
-  display: inline-block;
+
+  /* Medium cinematic tilt — premium & readable */
+  transform: perspective(700px) rotateY(25deg) rotateX(2deg);
   transform-style: preserve-3d;
-  backface-visibility: hidden;
+
+  /* Clean, premium transitions */
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), color 0.35s ease,
+    text-shadow 0.45s ease, opacity 0.25s ease;
+
+  background: transparent;
+  border-radius: var(--radius-base, 16px);
+
+  /* Soft ambient base shadow */
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.55), 0 0 8px rgba(0, 0, 0, 0.25);
+
+  display: inline-block;
 }
 
+/* Faint gold sheen layer */
 .menu-button::before {
   content: "";
   position: absolute;
   inset: 0;
-  clip-path: polygon(2% 15%, 100% 61%, 100% 63%, 7% 84%);
-  transition: background-color 0.3s ease;
-  z-index: -1;
+  border-radius: inherit;
+
+  background: linear-gradient(
+    120deg,
+    rgba(230, 210, 170, 0.18) 0%,
+    rgba(230, 210, 170, 0) 45%
+  );
+
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateZ(-1px) scale(1.02);
+  pointer-events: none;
+}
+
+/* Hover — elegant, controlled, premium glow */
+.menu-button:hover {
+  color: var(--gold, #e6d3ac);
+  transform: perspective(700px) rotateY(0deg) rotateX(0deg) translateZ(10px);
+  text-shadow: 0 6px 26px rgba(230, 210, 170, 0.55),
+    0 0 16px rgba(230, 210, 170, 0.25);
 }
 
 .menu-button:hover::before {
-  background: rgba(180, 160, 120, 0.5);
+  opacity: 0.35;
+  transform: translateZ(0px) scale(1.1);
 }
 
-.menu-button:hover {
-  color: #e8d9b8;
-  transform: perspective(500px) rotateY(0deg);
-}
-
+/* Mobile — minimal, flat, elegant */
 @media (max-width: 768px) {
   .menu-button {
-    position: fixed !important;
-    top: 1rem !important;
-    left: 1rem !important;
-    z-index: 50 !important;
+    font-size: 2.4rem;
+    padding: 10px 20px;
+    transform: none !important;
+    text-shadow: none;
+    background: transparent;
   }
-}
 
-.rotate-up {
-  transform: perspective(500px) rotateX(10deg) rotateY(40deg);
+  .menu-button:hover {
+    transform: none !important;
+    text-shadow: none;
+  }
+
+  .menu-button::before {
+    opacity: 0.22;
+    transform: none;
+  }
 }
 
 /* -------------------------------------------
