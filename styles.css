@@ -144,6 +144,13 @@ body {
   transform: translateZ(0px) scale(1.1);
 }
 
+@media (hover: none) and (pointer: coarse) {
+  .menu-button:active {
+    transform: scale(0.96);
+    opacity: 0.9;
+  }
+}
+
 @media (max-width: 768px) {
   .menu-button {
     font-size: 2rem !important;
