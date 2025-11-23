@@ -83,9 +83,6 @@
   </head>
 
   <body class="font-sans antialiased text-white bg-dark">
-    <div class="site-logo">
-      <img src="images/logo.svg" alt="Logo" />
-    </div>
     <script>
       function insertTemplateAtBeginning(content) {
         document.body.insertAdjacentHTML("afterbegin", content);
@@ -104,6 +101,9 @@
     </script>
 
     <main data-barba="container" data-barba-namespace="home">
+      <div class="site-logo">
+        <img src="images/logo.svg" alt="Logo" />
+      </div>
       <section class="w-full parallax-wrapper">
         <div
           class="relative h-screen w-full bg-cover bg-center pb-24 md:pb-32"

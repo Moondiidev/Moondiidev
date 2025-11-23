@@ -641,6 +641,11 @@ body {
   left: 64px; /* increased by +16px for visual grid alignment */
   z-index: 500;
   pointer-events: none;
+  display: none;
+}
+
+[data-barba-namespace="home"] .site-logo {
+  display: block;
 }
 
 .site-logo img {
