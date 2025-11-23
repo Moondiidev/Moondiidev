@@ -702,3 +702,22 @@ body {
   box-shadow: 0 0 14px rgba(255, 255, 255, 1);
   z-index: 5;
 }
+
+.mist-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+      circle at 30% 30%,
+      rgba(255, 235, 200, 0.05),
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at 70% 60%,
+      rgba(180, 200, 255, 0.04),
+      transparent 70%
+    );
+  filter: blur(22px);
+  opacity: 0.25;
+  z-index: 2; /* Below stars, above background */
+}

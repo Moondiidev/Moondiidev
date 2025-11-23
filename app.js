@@ -207,6 +207,7 @@ function initializePage() {
   initSwiper(".swiper-container-2", swiper2Options);
   initVideoControls();
   initLogoAnimations();
+  initMistDrift();
 
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
@@ -648,6 +649,51 @@ function initStars() {
   }
 
   setInterval(() => {
-    if (Math.random() > 0.65) createShootingStar();
-  }, 2000);
+    if (Math.random() > 0.7) createShootingStar();
+  }, 3500);
+
+  startTwinkleBursts();
+}
+
+function startTwinkleBursts() {
+  const stars = document.querySelectorAll(".star");
+
+  if (!stars.length) return;
+
+  function twinkleBurst() {
+    const star = stars[Math.floor(Math.random() * stars.length)];
+
+    gsap.fromTo(
+      star,
+      { opacity: 1 },
+      {
+        opacity: 0.2,
+        duration: 0.35,
+        yoyo: true,
+        repeat: 1,
+        ease: "power2.inOut",
+        onComplete: () => {
+          star.style.opacity = ""; // restore natural flicker
+        },
+      }
+    );
+  }
+
+  // random intervals 6–12 sec
+  setInterval(() => {
+    if (Math.random() > 0.6) twinkleBurst();
+  }, 6000);
+}
+
+function initMistDrift() {
+  const mist = document.getElementById("mist-layer");
+  if (!mist) return;
+
+  gsap.to(mist, {
+    backgroundPosition: "20px 35px, -15px -10px",
+    duration: 22,
+    ease: "sine.inOut",
+    yoyo: true,
+    repeat: -1,
+  });
 }
