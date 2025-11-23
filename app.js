@@ -630,27 +630,63 @@ function initStars() {
 
   // ---- SHOOTING STARS ----
   function createShootingStar() {
-    const s = document.createElement("div");
-    s.classList.add("shooting-star");
+    const star = document.createElement("div");
+    star.classList.add("shooting-star");
 
-    s.style.left = Math.random() * window.innerWidth * 0.6 + "px";
-    s.style.top = Math.random() * window.innerHeight * 0.3 + "px";
+    // Anchor on star layer
+    const starLayer = document.getElementById("star-layer");
 
-    starLayer.appendChild(s);
+    // Random start around top-left region
+    const startX = Math.random() * window.innerWidth * 0.7;
+    const startY = Math.random() * window.innerHeight * 0.3;
 
-    gsap.to(s, {
-      x: 180,
-      y: 110,
+    // Random angle between 15° and 35° downward
+    const angle = 15 + Math.random() * 20;
+    const rad = angle * (Math.PI / 180);
+
+    // Travel distance
+    const distance = 260 + Math.random() * 200;
+
+    // End position
+    const endX = startX + Math.cos(rad) * distance;
+    const endY = startY + Math.sin(rad) * distance;
+
+    // Tail length proportional to distance
+    const tail = distance * 0.6;
+    star.style.setProperty("--tail-length", tail + "px");
+
+    // Position & rotate
+    star.style.left = startX + "px";
+    star.style.top = startY + "px";
+    star.style.transform = `rotate(${angle}deg)`;
+
+    starLayer.appendChild(star);
+
+    // Animate head movement
+    gsap.to(star, {
+      x: endX - startX,
+      y: endY - startY,
       opacity: 0,
-      duration: 1.1,
+      duration: 0.9,
       ease: "power2.out",
-      onComplete: () => s.remove(),
+      onComplete: () => star.remove(),
     });
   }
 
-  setInterval(() => {
-    if (Math.random() > 0.7) createShootingStar();
-  }, 3500);
+  let lastShootingStar = 0;
+  let shootingStarDelay = 2000; // 2 seconds
+
+  function animateShootingStars(timestamp) {
+    if (timestamp - lastShootingStar > shootingStarDelay) {
+      if (Math.random() > 0.55) {
+        createShootingStar();
+      }
+      lastShootingStar = timestamp;
+    }
+
+    requestAnimationFrame(animateShootingStars);
+  }
+  requestAnimationFrame(animateShootingStars);
 
   startTwinkleBursts();
 }
