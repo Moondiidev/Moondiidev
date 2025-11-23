@@ -584,6 +584,51 @@ body {
   position: static !important;
 }
 
+/* Desktop (Final tuned) */
+.menu-wrapper::before {
+  content: "";
+  position: absolute;
+  left: -14px;
+  top: 38px;
+  width: 7px;
+  height: 7px;
+  background: rgba(255, 225, 170, 0.9);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 230, 180, 1), 0 0 22px rgba(255, 215, 150, 0.6);
+}
+
+.menu-wrapper::after {
+  content: "";
+  position: absolute;
+  left: -11px;
+  top: 54px;
+  width: 3px;
+  height: 70px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 225, 170, 0.5),
+    rgba(255, 200, 120, 0.15)
+  );
+  border-radius: 8px;
+  filter: blur(4px);
+}
+
+/* Mobile (Fix the floating problem) */
+@media (max-width: 768px) {
+  .menu-wrapper::before {
+    left: -10px;
+    top: 76px;
+    width: 5px;
+    height: 5px;
+  }
+
+  .menu-wrapper::after {
+    left: -8px;
+    top: 94px;
+    height: 50px;
+  }
+}
+
 /* universal portfolio card wrapper */
 .portfolio-card {
   width: 100%;
