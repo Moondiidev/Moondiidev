@@ -499,6 +499,12 @@ body {
   background-position: center !important;
 }
 
+.parallax-wrapper {
+  overflow: hidden; /* prevents scrollbars forever */
+  position: absolute;
+  inset: 0;
+}
+
 /* ============================================
    GLOBAL CELESTIAL SWIPER BUTTONS
 ============================================ */
@@ -613,4 +619,17 @@ body {
 
 .animate-fadeIn {
   animation: fadeIn 0.35s ease-out;
+}
+
+.name-underline {
+  width: 64px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(200, 180, 150, 0.15),
+    rgba(200, 180, 150, 0.5),
+    rgba(200, 180, 150, 0.15)
+  );
+  margin: 0.8rem auto 0 auto;
+  border-radius: 2px;
 }

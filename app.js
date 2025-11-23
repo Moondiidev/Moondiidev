@@ -511,3 +511,15 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log("DOM fully loaded and parsed.");
   initializePage();
 });
+
+document.addEventListener("mousemove", (e) => {
+  const x = (e.clientX - window.innerWidth / 2) * 0.015;
+  const y = (e.clientY - window.innerHeight / 2) * 0.015;
+
+  gsap.to(".bg-cover", {
+    x: x,
+    y: y,
+    duration: 2,
+    ease: "power2.out",
+  });
+});
