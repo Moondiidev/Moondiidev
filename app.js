@@ -550,15 +550,24 @@ function initStars() {
   const starLayer = document.getElementById("star-layer");
   if (!starLayer) return;
 
-  // Clear old stars (Barba.js)
+  // Clear old stars (Barba.js safety)
   while (starLayer.firstChild) {
     starLayer.removeChild(starLayer.firstChild);
   }
 
   const isMobile = window.innerWidth <= 768;
 
-  const starCount = isMobile ? 25 : 45;
-  const minDistance = isMobile ? 70 : 80;
+  // ❌ MOBILE: no stars, no GSAP, no shooting stars
+  if (isMobile) {
+    console.log("Mobile detected → starfield disabled.");
+    return;
+  }
+
+  // -------------------------------
+  // DESKTOP STARFIELD BELOW
+  // -------------------------------
+  const starCount = 45;
+  const minDistance = 80;
   const positions = [];
 
   function generatePosition() {
@@ -594,43 +603,34 @@ function initStars() {
 
     if (r < 0.7) {
       size = 1.5;
-      baseOpacity = 0.22;
-      flickerRange = 0.06;
+      baseOpacity = 0.18;
+      flickerRange = 0.05;
     } else if (r < 0.95) {
       size = 2.5;
-      baseOpacity = 0.32;
-      flickerRange = 0.18;
+      baseOpacity = 0.35;
+      flickerRange = 0.2;
     } else {
       size = 3.5 + Math.random() * 1.2;
-      baseOpacity = 0.55;
-      flickerRange = 0.25;
+      baseOpacity = 0.65;
+      flickerRange = 0.35;
     }
 
     star.style.width = size + "px";
     star.style.height = size + "px";
     star.style.left = x + "px";
     star.style.top = y + "px";
-    star.style.opacity = baseOpacity;
 
     starLayer.appendChild(star);
 
-    // ---- DESKTOP ONLY: FLICKER ----
-    if (!isMobile) {
-      gsap.to(star, {
-        opacity: baseOpacity + Math.random() * flickerRange,
-        duration: Math.random() * 1 + 0.5,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-        delay: Math.random() * 1.4,
-      });
-    }
-  }
-
-  // ---- MOBILE? STOP HERE ----
-  if (isMobile) {
-    console.log("Mobile detected → static stars only.");
-    return;
+    // DESKTOP: flicker
+    gsap.to(star, {
+      opacity: baseOpacity + Math.random() * flickerRange,
+      duration: Math.random() * 1 + 0.5,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+      delay: Math.random() * 1.4,
+    });
   }
 
   // ---- DESKTOP ONLY: SHOOTING STARS ----
@@ -639,21 +639,22 @@ function initStars() {
     s.classList.add("shooting-star");
 
     const startX = Math.random() * window.innerWidth * 0.7;
-    const startY = Math.random() * window.innerHeight * 0.35;
+    const startY = Math.random() * window.innerHeight * 0.4;
 
     const tailLength = 80 + Math.random() * 140;
     s.style.setProperty("--tail-length", tailLength + "px");
 
-    const angle = 20 + Math.random() * 10;
+    const angle = 20 + Math.random() * 10; // natural angle
     s.style.transform = `rotate(${angle}deg)`;
 
-    const glow = 12 + Math.random() * 18;
+    const glow = 10 + Math.random() * 20;
     s.style.boxShadow = `0 0 ${glow}px rgba(255,255,255,1)`;
 
     const speed = 0.7 + Math.random() * 0.8;
 
     s.style.left = startX + "px";
     s.style.top = startY + "px";
+
     starLayer.appendChild(s);
 
     const travel = tailLength + 300;
@@ -668,23 +669,17 @@ function initStars() {
     });
   }
 
-  let lastShootingStar = 0;
-  const shootingStarDelay = 2000;
-
-  function animateShootingStars(ts) {
-    if (ts - lastShootingStar > shootingStarDelay) {
-      if (Math.random() > 0.75) {
-        createShootingStar();
-      }
-      lastShootingStar = ts;
+  function shootingStarLoop() {
+    if (Math.random() > 0.75) {
+      createShootingStar();
     }
-    requestAnimationFrame(animateShootingStars);
+    setTimeout(shootingStarLoop, 2000);
   }
 
-  requestAnimationFrame(animateShootingStars);
+  shootingStarLoop();
 
-  // BURSTS ALSO DESKTOP ONLY
-  startTwinkleBursts();
+  // Desktop-only bursts
+  startTwinkleBursts?.();
 }
 
 function startTwinkleBursts() {
