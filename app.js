@@ -200,6 +200,12 @@ function initializePage() {
   initSwiper(".swiper-container-1", swiper1Options);
   initSwiper(".swiper-container-2", swiper2Options);
   initVideoControls();
+
+  // Run equal height only on mobile
+  if (window.innerWidth < 768) {
+    setEqualHeightForSlides();
+  }
+
   console.log("Page initialized.");
 }
 
@@ -310,6 +316,24 @@ function initSwiper(containerSelector, options) {
   console.log(swiper);
 
   console.log("Swiper initialized.");
+}
+
+function setEqualHeightForSlides() {
+  const slides = document.querySelectorAll(".swiper-slide");
+  let maxHeight = 0;
+
+  // Calculate the maximum height
+  slides.forEach((slide) => {
+    const slideHeight = slide.offsetHeight;
+    if (slideHeight > maxHeight) {
+      maxHeight = slideHeight;
+    }
+  });
+
+  // Set the height for all slides
+  slides.forEach((slide) => {
+    slide.style.height = `${maxHeight}px`;
+  });
 }
 
 function initVideoControls() {
