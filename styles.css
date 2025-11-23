@@ -1,28 +1,32 @@
 @font-face {
-  font-family: "Arsenal-Regular";
-  src: url("fonts/Arsenal-Regular.ttf") format("truetype");
-}
-@font-face {
-  font-family: "Arsenal-Bold";
-  src: url("fonts/Arsenal-Bold.ttf") format("truetype");
-}
-@font-face {
-  font-family: "Arsenal-Italic";
-  src: url("fonts/Arsenal-Italic.ttf") format("truetype");
-}
-@font-face {
-  font-family: "Arsenal-BoldItalic";
-  src: url("fonts/Arsenal-BoldItalic.ttf") format("truetype");
-}
-@font-face {
-  font-family: "MenuFont";
-  src: url("fonts/ITCAvantGardeStd-Bold.ttf") format("truetype");
-}
-@font-face {
-  font-family: "Anton-Regular";
-  src: url("fonts/Anton-Regular.ttf") format("truetype");
+  font-family: "Inter";
+  src: url("fonts/Inter-Regular.ttf") format("truetype");
+  font-weight: 400;
 }
 
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/Inter-Medium.ttf") format("truetype");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/Inter-Bold.ttf") format("truetype");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "SpaceGrotesk";
+  src: url("fonts/SpaceGrotesk-Bold.ttf") format("truetype");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "SpaceGrotesk";
+  src: url("fonts/SpaceGrotesk-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+}
 html {
   -webkit-text-size-adjust: 100%;
 }
@@ -33,10 +37,10 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  color: #e8e8e8; /* Softer white = better contrast */
-  font-family: "Arsenal-Regular", sans-serif !important;
+  font-family: "Inter", sans-serif !important;
   font-size: 17px; /* Slight bump improves readability */
-  line-height: 1.6; /* More space between lines */
+  line-height: 1.55;
+  color: #e8e8e8;
 }
 
 body {
@@ -350,7 +354,7 @@ body {
 
 .video-description {
   font-size: 1rem;
-  color: #d5d5d5;
+  color: inherit;
   max-width: 600px;
   margin: 0.7rem auto 1.4rem auto;
   line-height: 1.55;
@@ -379,13 +383,23 @@ body {
   }
 }
 
+.background-title,
+.section-title,
+h1,
+h2,
+h3 {
+  font-family: "SpaceGrotesk", sans-serif !important;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
 .background-title {
   font-family: "Anton-Regular", sans-serif;
   position: absolute;
   top: 38%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 4rem;
+  font-size: 3rem;
   line-height: 1.1;
   color: #d9d1bd;
   text-align: center;
@@ -400,7 +414,7 @@ body {
 
 @media screen and (max-width: 768px) {
   .background-title {
-    font-size: 3rem;
+    font-size: 2rem;
     top: 45%;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5),
       0 0 10px rgba(240, 225, 200, 0.15);
