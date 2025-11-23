@@ -7,6 +7,8 @@ const swiper1Options = {
   spaceBetween: 20,
   loop: true,
   initialSlide: 1,
+  loopAdditionalSlides: 1,
+
   pagination: {
     el: ".swiper-pagination-1",
     clickable: true,
@@ -23,6 +25,8 @@ const swiper2Options = {
   spaceBetween: 40,
   loop: true,
   initialSlide: 1,
+  loopAdditionalSlides: 1,
+
   pagination: {
     el: ".swiper-pagination-2",
     clickable: true,
