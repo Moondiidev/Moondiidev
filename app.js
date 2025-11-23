@@ -630,46 +630,38 @@ function initStars() {
 
   // ---- SHOOTING STARS ----
   function createShootingStar() {
-    const star = document.createElement("div");
-    star.classList.add("shooting-star");
+    const s = document.createElement("div");
+    s.classList.add("shooting-star");
 
-    // Anchor on star layer
-    const starLayer = document.getElementById("star-layer");
-
-    // Random start around top-left region
     const startX = Math.random() * window.innerWidth * 0.7;
-    const startY = Math.random() * window.innerHeight * 0.3;
+    const startY = Math.random() * window.innerHeight * 0.4;
 
-    // Random angle between 15° and 35° downward
-    const angle = 15 + Math.random() * 20;
-    const rad = angle * (Math.PI / 180);
+    const tailLength = 80 + Math.random() * 140;
+    s.style.setProperty("--tail-length", tailLength + "px");
 
-    // Travel distance
-    const distance = 260 + Math.random() * 200;
+    // ★ Corrected natural meteor angle
+    const angle = 20 + Math.random() * 10; // stays downward, no horizontal lines
+    s.style.transform = `rotate(${angle}deg)`;
 
-    // End position
-    const endX = startX + Math.cos(rad) * distance;
-    const endY = startY + Math.sin(rad) * distance;
+    const glow = 10 + Math.random() * 20;
+    s.style.boxShadow = `0 0 ${glow}px rgba(255,255,255,1)`;
 
-    // Tail length proportional to distance
-    const tail = distance * 0.6;
-    star.style.setProperty("--tail-length", tail + "px");
+    const speed = 0.7 + Math.random() * 0.8;
 
-    // Position & rotate
-    star.style.left = startX + "px";
-    star.style.top = startY + "px";
-    star.style.transform = `rotate(${angle}deg)`;
+    s.style.left = startX + "px";
+    s.style.top = startY + "px";
 
-    starLayer.appendChild(star);
+    starLayer.appendChild(s);
 
-    // Animate head movement
-    gsap.to(star, {
-      x: endX - startX,
-      y: endY - startY,
+    const travel = tailLength + 300;
+
+    gsap.to(s, {
+      x: travel,
+      y: travel * 0.5,
       opacity: 0,
-      duration: 0.9,
+      duration: speed,
       ease: "power2.out",
-      onComplete: () => star.remove(),
+      onComplete: () => s.remove(),
     });
   }
 
@@ -678,7 +670,7 @@ function initStars() {
 
   function animateShootingStars(timestamp) {
     if (timestamp - lastShootingStar > shootingStarDelay) {
-      if (Math.random() > 0.55) {
+      if (Math.random() > 0.75) {
         createShootingStar();
       }
       lastShootingStar = timestamp;

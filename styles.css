@@ -700,8 +700,9 @@ body {
   height: 2px;
   background: white;
   border-radius: 50%;
-  box-shadow: 0 0 12px rgba(255, 255, 255, 1), 0 0 24px rgba(255, 255, 255, 0.8);
-  transform-origin: left center;
+  box-shadow: 0 0 14px rgba(255, 255, 255, 1);
+  z-index: 5;
+  transform-origin: left center; /* IMPORTANT for angle rotation */
 }
 
 .shooting-star::after {
@@ -717,13 +718,12 @@ body {
   background: linear-gradient(
     to right,
     rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.25),
     rgba(255, 255, 255, 0.8)
   );
 
   filter: blur(1px);
   border-radius: 2px;
-  pointer-events: none;
 }
 
 /* Subtle drifting mist layer */
