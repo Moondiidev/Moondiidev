@@ -144,24 +144,24 @@ body {
   transform: translateZ(0px) scale(1.1);
 }
 
-/* Mobile — minimal, flat, elegant */
 @media (max-width: 768px) {
   .menu-button {
-    font-size: 2.4rem;
-    padding: 10px 20px;
-    transform: none !important;
-    text-shadow: none;
-    background: transparent;
+    font-size: 2rem !important;
+    padding: 10px 16px;
+    transform: perspective(500px) rotateY(20deg) rotateX(5deg);
   }
 
   .menu-button:hover {
-    transform: none !important;
-    text-shadow: none;
+    transform: perspective(500px) rotateY(0deg) rotateX(0deg) scale(1.03);
   }
 
-  .menu-button::before {
-    opacity: 0.22;
-    transform: none;
+  .menu-wrapper {
+    top: 45%;
+    transform: translateX(-50%);
+  }
+
+  .menu li {
+    margin-bottom: -3rem;
   }
 }
 

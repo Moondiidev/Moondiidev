@@ -446,6 +446,7 @@ barba.hooks.afterEnter((data) => {
       opacity: 0,
       y: 20,
       duration: 1.1,
+      delay: 0.4,
       ease: "power3.out",
     });
 
@@ -453,9 +454,11 @@ barba.hooks.afterEnter((data) => {
       opacity: 0,
       y: 18,
       duration: 1,
+      delay: 0.6,
       ease: "power3.out",
-      stagger: 0.12,
-      delay: 0.4,
+      onComplete() {
+        gsap.set(".menu-button", { clearProps: "transform" });
+      },
     });
   });
 });
