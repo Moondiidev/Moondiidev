@@ -637,16 +637,16 @@ body {
 /* Desktop logo tuning */
 .site-logo {
   position: fixed;
-  top: 42px; /* gives breathing room */
-  left: 48px; /* aligns visually with nav text column */
+  top: 42px;
+  left: 64px; /* increased by +16px for visual grid alignment */
   z-index: 500;
   pointer-events: none;
 }
 
 .site-logo img {
-  width: 68px; /* ideal visibility */
+  width: 74px; /* +6px more presence */
   height: auto;
-  opacity: 0.88; /* subtle but noticeable */
+  opacity: 0.88; /* matches your gold text glow */
   transition: opacity 0.3s ease;
 }
 
@@ -661,7 +661,7 @@ body {
   }
 
   .site-logo img {
-    width: 46px; /* smaller for mobile layout */
-    opacity: 0.75; /* lighter presence */
+    width: 46px;
+    opacity: 0.75;
   }
 }
