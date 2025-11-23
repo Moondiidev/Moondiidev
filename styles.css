@@ -505,6 +505,10 @@ body {
   inset: 0;
 }
 
+.parallax-wrapper > div {
+  height: 100dvh !important;
+}
+
 /* ============================================
    GLOBAL CELESTIAL SWIPER BUTTONS
 ============================================ */
