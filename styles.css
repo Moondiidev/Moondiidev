@@ -647,7 +647,7 @@ body {
   position: fixed;
   top: 40px;
   left: 60px;
-  z-index: 99999;
+  z-index: 600;
   pointer-events: none;
   display: none;
   opacity: 0;
