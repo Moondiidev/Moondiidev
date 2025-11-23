@@ -1,27 +1,60 @@
+<!-- DARK OVERLAY FOR TRANSITIONS -->
 <div
   id="overlay"
   class="fixed inset-0 z-[9999] bg-black bg-opacity-0"
   style="display: none"
 ></div>
+
+<!-- PROJECT DETAILS POPUP OVERLAY -->
 <div
   id="project-details-overlay"
-  class="fixed inset-0 z-[9999] bg-black bg-opacity-70 flex items-center justify-center"
+  class="fixed inset-0 z-[9999] bg-black/70 backdrop-blur-sm flex items-center justify-center"
   style="display: none"
 >
-  <div id="popup" class="bg-gray-800 p-5 rounded max-w-lg text-center">
-    <h2 class="text-2xl font-bold mb-4" id="project-title">Project Details</h2>
-    <p id="project-details" class="text-lg mb-4">
-      <!-- Project details will be inserted here -->
-    </p>
+  <div
+    id="popup"
+    class="bg-[#0f0f0f] border border-[#151516] shadow-2xl rounded-2xl max-w-lg w-full mx-4 p-8 animate-popupFade text-center"
+  >
+    <!-- TITLE -->
+    <h2
+      id="project-title"
+      class="text-2xl font-semibold text-[#e6d3ac] mb-4 tracking-wide"
+    ></h2>
+
+    <!-- DETAILS TEXT -->
+    <p
+      id="project-details"
+      class="text-gray-300 text-base leading-relaxed mb-8 whitespace-pre-line"
+    ></p>
+
+    <!-- CLOSE BUTTON -->
     <button
       id="close-button"
-      class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
       onclick="closeDetails()"
+      class="px-6 py-2 rounded-xl bg-[#2a241e] hover:bg-[#4a3c2f] transition-colors text-white font-semibold"
     >
       Close
     </button>
   </div>
 </div>
+
+<!-- CSS ANIMATION -->
+<style>
+  @keyframes popupFade {
+    0% {
+      opacity: 0;
+      transform: translateY(12px) scale(0.98);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .animate-popupFade {
+    animation: popupFade 0.35s ease-out;
+  }
+</style>
 
 <!-- Transition 1 -->
 <ul
