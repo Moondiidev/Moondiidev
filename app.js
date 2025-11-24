@@ -735,26 +735,33 @@ function initRandomButtonPulse() {
   const homeContainer = document.querySelector('[data-barba-namespace="home"]');
   if (!homeContainer) return;
 
-  const buttons = document.querySelectorAll(".menu-button");
+  // Select ALL menu buttons inside home
+  const buttons = homeContainer.querySelectorAll(".menu-button");
   if (!buttons.length) return;
 
+  let isPulsing = false;
+
   function pulseRandomButton() {
-    // Choose a random button (Websites or Games)
+    if (isPulsing) return;
+
+    isPulsing = true;
+
+    // Pick a random menu button on home (Websites or Games)
     const btn = buttons[Math.floor(Math.random() * buttons.length)];
 
-    // Apply the class for 1 animation cycle
     btn.classList.add("pulsing");
 
-    // Remove after animation finishes
+    // End pulse
     setTimeout(() => {
       btn.classList.remove("pulsing");
-    }, 1600);
+      isPulsing = false;
+    }, 1800); // match animation duration
 
-    // Random delay 4–10 seconds before next pulse
+    // Schedule next pulse
     const nextDelay = 4000 + Math.random() * 6000;
-    setTimeout(pulseRandomButton, nextDelay);
+    setTimeout(() => pulseRandomButton(), nextDelay + 1800);
   }
 
-  // Start after slight delay (page load-friendly)
+  // Start after slight delay
   setTimeout(pulseRandomButton, 2500);
 }
