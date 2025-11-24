@@ -207,6 +207,7 @@ function initializePage() {
   initSwiper(".swiper-container-2", swiper2Options);
   initVideoControls();
   initLogoAnimations();
+  initRandomButtonPulse();
 
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
@@ -671,7 +672,7 @@ function initStars() {
   }
 
   function shootingStarLoop() {
-    if (Math.random() > 0.75) {
+    if (Math.random() > 0.85) {
       createShootingStar();
     }
     setTimeout(shootingStarLoop, 2000);
@@ -724,4 +725,36 @@ function initMistDrift() {
     yoyo: true,
     repeat: -1,
   });
+}
+
+// ---------------------------------------------------------
+// RANDOM OCCASIONAL PULSE EFFECT FOR MENU BUTTONS
+// ---------------------------------------------------------
+function initRandomButtonPulse() {
+  // Only run on HOME namespace
+  const homeContainer = document.querySelector('[data-barba-namespace="home"]');
+  if (!homeContainer) return;
+
+  const buttons = document.querySelectorAll(".menu-button");
+  if (!buttons.length) return;
+
+  function pulseRandomButton() {
+    // Choose a random button (Websites or Games)
+    const btn = buttons[Math.floor(Math.random() * buttons.length)];
+
+    // Apply the class for 1 animation cycle
+    btn.classList.add("pulsing");
+
+    // Remove after animation finishes
+    setTimeout(() => {
+      btn.classList.remove("pulsing");
+    }, 1600);
+
+    // Random delay 4–10 seconds before next pulse
+    const nextDelay = 4000 + Math.random() * 6000;
+    setTimeout(pulseRandomButton, nextDelay);
+  }
+
+  // Start after slight delay (page load-friendly)
+  setTimeout(pulseRandomButton, 2500);
 }

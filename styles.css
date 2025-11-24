@@ -810,3 +810,32 @@ h3 {
   opacity: 0.25;
   z-index: 2; /* Below stars, above background */
 }
+
+/* -------------------------------------------
+   OCCASIONAL PULSING ANIMATION FOR MENU BUTTONS
+-------------------------------------------- */
+
+@keyframes goldEmberPulse {
+  0% {
+    transform: perspective(700px) rotateY(25deg) rotateX(2deg);
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), 0 0 6px rgba(230, 210, 170, 0);
+    color: inherit;
+  }
+
+  50% {
+    transform: perspective(700px) rotateY(23deg) rotateX(1deg) translateZ(4px);
+    text-shadow: 0 4px 20px rgba(230, 210, 170, 0.35),
+      0 0 14px rgba(230, 210, 170, 0.25);
+    color: #e6d3ac;
+  }
+
+  100% {
+    transform: perspective(700px) rotateY(25deg) rotateX(2deg);
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), 0 0 6px rgba(230, 210, 170, 0);
+    color: inherit;
+  }
+}
+
+.menu-button.pulsing {
+  animation: goldEmberPulse 1.8s ease-in-out;
+}
