@@ -2,84 +2,67 @@
 <html lang="en" data-barba="wrapper">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Page Title -->
+    <title>Moondii • Software Engineer</title>
+
+    <!-- Description (SEO + Social) -->
     <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+      name="description"
+      content="Portfolio of Munkhbilguun Munkhdemberel — Software Engineer building Websites, Games, and digital experiences."
     />
 
+    <!-- Open Graph -->
+    <meta property="og:title" content="Moondii • Software Engineer" />
+    <meta
+      property="og:description"
+      content="Portfolio of Munkhbilguun Munkhdemberel — Websites, Games, and digital experiences."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:image"
+      content="https://moondiidev.github.io/Moondiidev/assets/preview.png"
+    />
+    <meta
+      property="og:url"
+      content="https://moondiidev.github.io/Moondiidev/"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/favicon.png" />
+
+    <!-- Preconnect for Faster Font Loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Google Fonts CDN (Inter + Space Grotesk) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind (Development) -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              // Backgrounds
-              dark: "#0b0b0c",
-              "surface-100": "#0f0f0f",
-              "surface-200": "#141415",
 
-              // Borders
-              "border-light": "#151516",
+    <!-- Production Tailwind Note -->
+    <!-- Replace CDN with compiled CSS for live production -->
 
-              // Gold accents
-              gold: "#e6d3ac",
-              "gold-dark": "#4a3c2f",
-              "gold-mid": "#2a241e",
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="./styles.css" />
 
-              // Blue cinematic accents
-              bluecine: "#1e4351",
-              "bluecine-dark": "#0f2831",
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
-              // Text colors
-              "text-primary": "#f0f0f0",
-              "text-secondary": "#b3b3b3",
-              "text-muted": "#565656",
-            },
-
-            borderRadius: {
-              base: "16px",
-              cine: "20px",
-              "cine-lg": "24px",
-            },
-
-            boxShadow: {
-              soft: "0 10px 20px rgba(0,0,0,0.45)",
-              deep: "0 20px 38px rgba(0,0,0,0.70)",
-            },
-
-            spacing: {
-              1: "4px",
-              2: "8px",
-              3: "12px",
-              4: "16px",
-              5: "24px",
-              6: "32px",
-              7: "48px",
-            },
-
-            fontFamily: {
-              sans: ["Arsenal-Regular", "sans-serif"],
-            },
-
-            transitionTimingFunction: {
-              cinematic: "cubic-bezier(0.175, 0.885, 0.32, 1.275)",
-            },
-
-            zIndex: {
-              overlay: 9999,
-              transition: 999,
-            },
-          },
-        },
-      };
-    </script>
-
-    <link rel="stylesheet" href="styles.css" />
+    <!-- Swiper -->
     <link
       rel="stylesheet"
-      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
-    <title>Moondiidev</title>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- Barba.js -->
+    <script src="https://unpkg.com/@barba/core"></script>
   </head>
 
   <body class="font-sans antialiased text-white bg-dark">
