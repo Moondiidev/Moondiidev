@@ -478,6 +478,21 @@ barba.hooks.afterEnter((data) => {
         gsap.set(".menu-button", { clearProps: "transform" });
       },
     });
+    gsap.from(".hero-subtitle", {
+      opacity: 0,
+      y: 10,
+      duration: 1,
+      delay: 0.9,
+      ease: "power3.out",
+    });
+    gsap.from(".hero-icons a", {
+      opacity: 0,
+      y: 12,
+      duration: 1,
+      delay: 1.1,
+      stagger: 0.12,
+      ease: "power3.out",
+    });
 
     const namespace = data.next.namespace;
 
