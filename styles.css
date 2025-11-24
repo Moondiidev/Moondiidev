@@ -48,6 +48,7 @@ body {
   height: 100vh;
   overscroll-behavior-y: none;
   touch-action: manipulation;
+  overflow: hidden !important;
 }
 
 .container {
@@ -882,4 +883,16 @@ h3 {
 
 .menu-button:hover.pulsing::before {
   animation: none !important;
+}
+
+/* -------------------------------------------
+   FIX SCROLLBAR APPEARING BUG ON HOME
+-------------------------------------------- */
+[data-barba-namespace="home"] {
+  overflow: hidden !important;
+  height: 100vh; /* required so body doesn't force scroll */
+}
+
+[data-barba-namespace="home"]::-webkit-scrollbar {
+  display: none !important;
 }

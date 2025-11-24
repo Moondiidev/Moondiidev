@@ -527,11 +527,6 @@ barba.init({
   ],
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("DOM fully loaded and parsed.");
-  initializePage();
-});
-
 document.addEventListener("mousemove", (e) => {
   const x = gsap.utils.clamp(
     -30,
@@ -743,8 +738,11 @@ function initRandomButtonPulse() {
   const homeContainer = document.querySelector('[data-barba-namespace="home"]');
   if (!homeContainer) return;
 
-  // Select ALL menu buttons inside home
-  const buttons = homeContainer.querySelectorAll(".menu-button");
+  // Select ONLY visible menu buttons (ignores Barba leftovers)
+  const buttons = [...homeContainer.querySelectorAll(".menu-button")].filter(
+    (btn) => btn.offsetParent !== null
+  );
+
   if (!buttons.length) return;
 
   let isPulsing = false;
@@ -754,22 +752,17 @@ function initRandomButtonPulse() {
 
     isPulsing = true;
 
-    // Pick a random menu button on home (Websites or Games)
     const btn = buttons[Math.floor(Math.random() * buttons.length)];
-
     btn.classList.add("pulsing");
 
-    // End pulse
     setTimeout(() => {
       btn.classList.remove("pulsing");
       isPulsing = false;
-    }, 1800); // match animation duration
+    }, 1900);
 
-    // Schedule next pulse
     const nextDelay = 4000 + Math.random() * 6000;
-    setTimeout(() => pulseRandomButton(), nextDelay + 1800);
+    setTimeout(pulseRandomButton, nextDelay + 1900);
   }
 
-  // Start after slight delay
   setTimeout(pulseRandomButton, 2500);
 }
