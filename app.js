@@ -479,8 +479,22 @@ barba.hooks.afterEnter((data) => {
       },
     });
 
+    const namespace = data.next.namespace;
+
+    // Enable overflow hidden ONLY on home
+    if (namespace === "home") {
+      document.body.classList.add("home-no-scroll");
+    } else {
+      document.body.classList.remove("home-no-scroll");
+    }
+
     initStars();
   });
+});
+
+barba.hooks.afterLeave(() => {
+  // Just in case — ensures cleanup
+  document.body.classList.remove("home-no-scroll");
 });
 
 // Barba.js initialization
@@ -541,7 +555,8 @@ document.addEventListener("mousemove", (e) => {
   );
 
   gsap.to(".bg-cover", {
-    transform: `translate(${x}px, ${y}px)`,
+    x: x,
+    y: y,
     duration: 2,
     ease: "power2.out",
   });
