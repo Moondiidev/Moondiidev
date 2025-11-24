@@ -501,6 +501,11 @@ h3 {
   content: "" !important; /* Kill the default arrow */
 }
 
+/* Correct the arrow direction */
+.swiper-button-prev svg {
+  transform: rotate(180deg);
+}
+
 .swiper-button-next,
 .swiper-button-prev,
 .swiper-button-next-1,
