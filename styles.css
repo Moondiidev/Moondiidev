@@ -276,7 +276,7 @@ body {
   transform: translate(-50%, -50%);
   width: 80px;
   height: 80px;
-  background: url("images/play-button.png") no-repeat center center;
+  background: url("images/play-button.webp") no-repeat center center;
   background-size: contain;
   pointer-events: none;
   z-index: 10;
