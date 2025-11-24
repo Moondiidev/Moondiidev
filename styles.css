@@ -817,25 +817,38 @@ h3 {
 
 @keyframes goldEmberPulse {
   0% {
-    transform: perspective(700px) rotateY(25deg) rotateX(2deg);
+    transform: perspective(700px) rotateY(25deg) rotateX(2deg) translateZ(0px);
     text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), 0 0 6px rgba(230, 210, 170, 0);
-    color: inherit;
+    opacity: 1;
   }
 
   50% {
-    transform: perspective(700px) rotateY(23deg) rotateX(1deg) translateZ(4px);
-    text-shadow: 0 4px 20px rgba(230, 210, 170, 0.35),
-      0 0 14px rgba(230, 210, 170, 0.25);
-    color: #e6d3ac;
+    transform: perspective(700px) rotateY(25deg) rotateX(2deg) translateZ(6px);
+    text-shadow: 0 4px 22px rgba(230, 210, 170, 0.38),
+      0 0 18px rgba(230, 210, 170, 0.3);
+    opacity: 1;
   }
 
   100% {
-    transform: perspective(700px) rotateY(25deg) rotateX(2deg);
+    transform: perspective(700px) rotateY(25deg) rotateX(2deg) translateZ(0px);
     text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), 0 0 6px rgba(230, 210, 170, 0);
-    color: inherit;
+    opacity: 1;
   }
 }
 
 .menu-button.pulsing {
   animation: goldEmberPulse 1.8s ease-in-out;
+  animation-fill-mode: both;
+}
+
+/* 🔥 Add gold sheen flash to ::before during pulse */
+.menu-button.pulsing::before {
+  opacity: 0.35 !important;
+  transform: translateZ(2px) scale(1.06);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* ❗ Prevent pulsing when hovered → avoids conflict */
+.menu-button:hover.pulsing {
+  animation: none !important;
 }
