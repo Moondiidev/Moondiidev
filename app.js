@@ -207,7 +207,6 @@ function initializePage() {
   initSwiper(".swiper-container-2", swiper2Options);
   initVideoControls();
   initLogoAnimations();
-  initRandomButtonPulse();
 
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
@@ -215,6 +214,7 @@ function initializePage() {
     setEqualHeightForSlides();
   } else {
     initMistDrift();
+    initRandomButtonPulse();
   }
 
   console.log("Page initialized.");

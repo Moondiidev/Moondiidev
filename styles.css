@@ -880,21 +880,3 @@ h3 {
 .menu-button:hover.pulsing::before {
   animation: none !important;
 }
-
-.home-no-scroll {
-  overflow: hidden !important;
-}
-
-/* =========================================================
-   MOBILE FIX — Replace transform animation (prevents snapping)
-   ========================================================= */
-
-@media (max-width: 768px) {
-  .menu-button:hover {
-    transform: none !important;
-  }
-
-  .menu-button {
-    transform: none !important;
-  }
-}
