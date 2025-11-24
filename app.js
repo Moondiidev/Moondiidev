@@ -492,6 +492,9 @@ barba.hooks.afterEnter((data) => {
       delay: 1.1,
       stagger: 0.12,
       ease: "power3.out",
+      onComplete() {
+        gsap.set(".hero-icons a", { clearProps: "all" });
+      },
     });
 
     const namespace = data.next.namespace;
