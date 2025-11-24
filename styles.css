@@ -126,50 +126,26 @@ body {
   }
 }
 
+/* MOBILE FIX — Clean, matched to desktop */
 @media (max-width: 768px) {
   .menu-button {
-    font-size: 2rem !important;
-    padding: 10px 16px;
-    transform: perspective(500px) rotateY(20deg) rotateX(5deg);
-  }
-
-  .menu-button:hover {
-    transform: perspective(500px) rotateY(0deg) rotateX(0deg) scale(1.03);
+    font-size: 2rem;
+    padding: 6px 14px;
+    transform: perspective(700px) rotateY(18deg) rotateX(2deg);
   }
 
   .menu-wrapper {
-    top: 45%;
-    transform: translateX(-50%);
+    top: 12%;
+    left: 12%;
+    transform: translateY(0);
   }
 
   .menu li {
-    margin-bottom: -3rem;
-  }
-}
-
-/* -------------------------------------------
-   MOBILE BUTTON SCALING (medium)
--------------------------------------------- */
-
-@media (max-width: 768px) {
-  .menu-button {
-    font-size: 2.3rem;
-    padding: 10px 16px;
-    margin-top: 20px;
-    transform: perspective(500px) rotateY(40deg) rotateX(5deg);
-  }
-
-  .menu-wrapper {
-    top: 4%;
-    transform: translateY(10px);
-  }
-
-  .menu li {
-    margin-bottom: -3rem;
+    margin-bottom: -2rem;
   }
 
   .rotate-up {
-    transform: perspective(500px) rotateX(10deg) rotateY(40deg);
+    transform: perspective(700px) rotateY(18deg) rotateX(2deg);
   }
 }
 
@@ -609,14 +585,14 @@ h3 {
 @media (max-width: 768px) {
   .menu-wrapper::before {
     left: -10px;
-    top: 46px;
+    top: 22px;
     width: 5px;
     height: 5px;
   }
 
   .menu-wrapper::after {
     left: -8px;
-    top: 64px;
+    top: 40px;
     height: 50px;
   }
 }
