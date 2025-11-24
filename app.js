@@ -533,12 +533,20 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("mousemove", (e) => {
-  const x = (e.clientX - window.innerWidth / 2) * 0.015;
-  const y = (e.clientY - window.innerHeight / 2) * 0.015;
+  const x = gsap.utils.clamp(
+    -30,
+    30,
+    (e.clientX - window.innerWidth / 2) * 0.015
+  );
+
+  const y = gsap.utils.clamp(
+    -30,
+    30,
+    (e.clientY - window.innerHeight / 2) * 0.015
+  );
 
   gsap.to(".bg-cover", {
-    x: x,
-    y: y,
+    transform: `translate(${x}px, ${y}px)`,
     duration: 2,
     ease: "power2.out",
   });

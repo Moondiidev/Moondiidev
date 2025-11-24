@@ -504,10 +504,13 @@ h3 {
   background-size: cover !important;
   background-repeat: no-repeat !important;
   background-position: center !important;
+  will-change: transform;
+  position: relative;
+  overflow: hidden !important;
 }
 
 .parallax-wrapper {
-  overflow: hidden;
+  overflow: hidden !important;
   position: relative;
   width: 100%;
   height: 100%;
@@ -815,40 +818,68 @@ h3 {
    OCCASIONAL PULSING ANIMATION FOR MENU BUTTONS
 -------------------------------------------- */
 
+/* =========================================================
+   PERFECTED PULSE — Cinematic Gold Ember + Soft Depth Breath
+   ========================================================= */
+
 @keyframes goldEmberPulse {
   0% {
-    transform: perspective(700px) rotateY(25deg) rotateX(2deg) translateZ(0px);
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), 0 0 6px rgba(230, 210, 170, 0);
-    opacity: 1;
+    transform: perspective(700px) rotateY(25deg) rotateX(2deg) translateZ(0px)
+      translateY(0px);
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45), 0 0 6px rgba(230, 210, 170, 0);
+    color: inherit;
   }
 
   50% {
-    transform: perspective(700px) rotateY(25deg) rotateX(2deg) translateZ(6px);
-    text-shadow: 0 4px 22px rgba(230, 210, 170, 0.38),
-      0 0 18px rgba(230, 210, 170, 0.3);
-    opacity: 1;
+    /* Deeper depth + slight float — extremely subtle */
+    transform: perspective(700px) rotateY(25deg) rotateX(2deg) translateZ(7px)
+      translateY(-1px);
+
+    /* Premium gold ember glow */
+    text-shadow: 0 6px 28px rgba(230, 210, 170, 0.42),
+      0 0 20px rgba(230, 210, 170, 0.32);
+    color: #e6d3ac;
   }
 
   100% {
-    transform: perspective(700px) rotateY(25deg) rotateX(2deg) translateZ(0px);
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), 0 0 6px rgba(230, 210, 170, 0);
-    opacity: 1;
+    transform: perspective(700px) rotateY(25deg) rotateX(2deg) translateZ(0px)
+      translateY(0px);
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45), 0 0 6px rgba(230, 210, 170, 0);
+    color: inherit;
   }
 }
 
 .menu-button.pulsing {
-  animation: goldEmberPulse 1.8s ease-in-out;
+  animation: goldEmberPulse 1.9s ease-in-out;
   animation-fill-mode: both;
 }
 
-/* 🔥 Add gold sheen flash to ::before during pulse */
-.menu-button.pulsing::before {
-  opacity: 0.35 !important;
-  transform: translateZ(2px) scale(1.06);
-  transition: opacity 0.4s ease, transform 0.4s ease;
+/* ✨ Gold sheen sweep (Premium finish) */
+@keyframes goldSheenSweep {
+  0% {
+    opacity: 0;
+    transform: translateX(-20%) scale(1);
+  }
+  50% {
+    opacity: 0.28;
+    transform: translateX(10%) scale(1.1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(40%) scale(1);
+  }
 }
 
-/* ❗ Prevent pulsing when hovered → avoids conflict */
+.menu-button.pulsing::before {
+  animation: goldSheenSweep 1.9s ease-in-out;
+  animation-fill-mode: both;
+}
+
+/* 🚫 Avoid conflict with hover animations */
 .menu-button:hover.pulsing {
+  animation: none !important;
+}
+
+.menu-button:hover.pulsing::before {
   animation: none !important;
 }
