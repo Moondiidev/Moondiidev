@@ -355,31 +355,31 @@ function setEqualHeightForSlides() {
 
 function initVideoControls() {
   console.log("Initializing video controls...");
-  const videos = document.querySelectorAll(".custom-video");
-  console.log("Found videos:", videos);
 
-  const isComputer = /Windows|Macintosh|Linux/.test(navigator.userAgent);
+  const videos = document.querySelectorAll(".custom-video");
+  if (!videos.length) return;
+
+  const isDesktop = /Windows|Macintosh|Linux/.test(navigator.userAgent);
   const isiOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
 
   videos.forEach((video) => {
-    const loader = video.parentElement.querySelector(".loader");
-    const playButton = video.parentElement.querySelector(".play-button");
+    const wrapper = video.parentElement;
+    const loader = wrapper.querySelector(".loader");
+    const playButton = wrapper.querySelector(".play-button");
 
-    // ----------------------------
-    // Start loading immediately
-    // ----------------------------
+    // Kill existing event listeners (Barba safety)
+    video.replaceWith(video.cloneNode(true));
+    video = wrapper.querySelector(".custom-video");
+
+    // Start buffering immediately
     video.preload = "auto";
-    video.load(); // <-- Important: start buffering immediately
+    video.load();
 
-    // ----------------------------
-    // Do NOT hide with display:none
-    // ----------------------------
+    // Keep hidden but DO NOT use display:none
     video.style.opacity = "0";
     loader.style.display = "block";
 
-    // ----------------------------
-    // iOS setup
-    // ----------------------------
+    // --- iOS Setup ---
     if (isiOS) {
       video.removeAttribute("playsinline");
       video.removeAttribute("webkit-playsinline");
@@ -387,39 +387,36 @@ function initVideoControls() {
       video.muted = true;
     }
 
-    // ----------------------------
-    // Desktop autoplay preparation
-    // ----------------------------
-    if (isComputer) {
-      video.muted = true; // REQUIRED to allow autoplay
-      video.removeAttribute("autoplay"); // avoids Chrome bugs
+    // --- Desktop Setup ---
+    if (isDesktop) {
+      video.muted = true; // Required for autoplay
+      video.removeAttribute("autoplay"); // Avoid Chrome autoplay bugs
     }
 
-    let ready = false;
-    const handleVideoReady = () => {
-      if (ready) return;
-      ready = true;
+    // --- Video Ready Handler ---
+    let isReady = false;
+
+    function handleReady() {
+      if (isReady) return;
+      isReady = true;
 
       loader.style.display = "none";
       video.style.opacity = "1";
 
-      if (isComputer) {
-        if (playButton) playButton.style.display = "none";
-
-        // IMPORTANT: Call play ONLY now (never earlier)
-        video.play().catch((err) => {
-          console.log("Autoplay blocked:", err);
+      // Desktop autoplay
+      if (isDesktop && playButton) {
+        playButton.style.display = "none";
+        video.play().catch(() => {
+          console.log("Autoplay blocked.");
         });
       }
-    };
+    }
 
-    // More reliable combination:
-    video.addEventListener("loadeddata", handleVideoReady);
-    video.addEventListener("canplay", handleVideoReady);
+    // More reliable than loadedmetadata alone
+    video.addEventListener("loadeddata", handleReady);
+    video.addEventListener("canplay", handleReady);
 
-    // ----------------------------
-    // Fullscreen click handler
-    // ----------------------------
+    // --- Click to fullscreen ---
     video.addEventListener("click", () => {
       video.muted = false;
 
@@ -429,19 +426,14 @@ function initVideoControls() {
       }
 
       video.play();
-
       if (playButton) playButton.style.display = "none";
     });
 
-    // ----------------------------
-    // Exit fullscreen handler
-    // ----------------------------
+    // --- Exit fullscreen handler ---
     document.addEventListener("fullscreenchange", () => {
-      if (!document.fullscreenElement) {
-        if (!isiOS) {
-          video.muted = true;
-          video.play();
-        }
+      if (!document.fullscreenElement && !isiOS) {
+        video.muted = true;
+        video.play();
       }
     });
   });
@@ -767,17 +759,23 @@ function initRandomButtonPulse() {
   const homeContainer = document.querySelector('[data-barba-namespace="home"]');
   if (!homeContainer) return;
 
-  // Select ONLY visible menu buttons (ignores Barba leftovers)
+  // Select visible menu buttons
   const buttons = [...homeContainer.querySelectorAll(".menu-button")].filter(
     (btn) => btn.offsetParent !== null
   );
 
   if (!buttons.length) return;
 
+  // --- Prevent duplicate timers after Barba transitions ---
+  if (window._pulseInterval) {
+    clearTimeout(window._pulseInterval);
+    window._pulseInterval = null;
+  }
+
   let isPulsing = false;
 
   function pulseRandomButton() {
-    if (isPulsing) return;
+    if (isPulsing || !buttons.length) return;
 
     isPulsing = true;
 
@@ -787,11 +785,15 @@ function initRandomButtonPulse() {
     setTimeout(() => {
       btn.classList.remove("pulsing");
       isPulsing = false;
-    }, 1900);
 
-    const nextDelay = 4000 + Math.random() * 6000;
-    setTimeout(pulseRandomButton, nextDelay + 1900);
+      // Schedule next pulse
+      const nextDelay = 4000 + Math.random() * 6000;
+      window._pulseInterval = setTimeout(pulseRandomButton, nextDelay);
+    }, 1900);
   }
 
-  setTimeout(pulseRandomButton, 2500);
+  // Start initial pulse after delay
+  window._pulseInterval = setTimeout(() => {
+    pulseRandomButton();
+  }, 2500);
 }
