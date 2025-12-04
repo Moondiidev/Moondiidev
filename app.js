@@ -199,17 +199,26 @@ function contentAnimationForGames() {
 // Call the function after the Swiper initialization
 function initializePage() {
   console.log("Initializing page...");
-  initSwiper(".swiper-container-1", swiper1Options);
-  initSwiper(".swiper-container-2", swiper2Options);
-  initVideoControls();
-  initLogoAnimations();
+  if (document.querySelector(".swiper-container-1")) {
+    initSwiper(".swiper-container-1", swiper1Options);
+  }
+  if (document.querySelector(".swiper-container-2")) {
+    initSwiper(".swiper-container-2", swiper2Options);
+  }
+  if (document.querySelector(".custom-video")) {
+    initVideoControls();
+  }
+
+  if (document.querySelector(".site-logo")) {
+    initLogoAnimations();
+  }
 
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
   if (isMobile) {
     setEqualHeightForSlides();
   } else {
-    initMistDrift();
+    if (document.getElementById("mist-layer")) initMistDrift();
     initRandomButtonPulse();
   }
 
@@ -370,7 +379,7 @@ function initVideoControls() {
     video = wrapper.querySelector(".custom-video");
 
     // Start buffering immediately
-    video.preload = "auto";
+    video.preload = "metadata";
     video.load();
 
     // Keep hidden but DO NOT use display:none
@@ -545,35 +554,40 @@ barba.init({
 });
 
 (function initParallax() {
-  let ticking = false;
+  const bg = document.querySelector(".bg-cover");
+  if (!bg) return;
 
-  document.addEventListener("mousemove", (e) => {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        const x = gsap.utils.clamp(
-          -30,
-          30,
-          (e.clientX - window.innerWidth / 2) * 0.015
-        );
+  // Reduce motion support
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-        const y = gsap.utils.clamp(
-          -30,
-          30,
-          (e.clientY - window.innerHeight / 2) * 0.015
-        );
+  let targetX = 0;
+  let targetY = 0;
 
-        gsap.to(".bg-cover", {
-          x: x,
-          y: y,
-          duration: 2,
-          ease: "power2.out",
+  const centerX = window.innerWidth / 2;
+  const centerY = window.innerHeight / 2;
+
+  // --- Smooth interpolation tween (runs once, super cheap) ---
+  gsap.to(
+    {},
+    {
+      duration: 0.016, // ~60fps
+      repeat: -1,
+      onUpdate() {
+        gsap.set(bg, {
+          x: targetX,
+          y: targetY,
         });
-
-        ticking = false;
-      });
-
-      ticking = true;
+      },
     }
+  );
+
+  // --- Mousemove handler (fast, no tween creation) ---
+  document.addEventListener("mousemove", (e) => {
+    const x = gsap.utils.clamp(-30, 30, (e.clientX - centerX) * 0.015);
+    const y = gsap.utils.clamp(-30, 30, (e.clientY - centerY) * 0.015);
+
+    targetX = x;
+    targetY = y;
   });
 })();
 
@@ -582,6 +596,9 @@ barba.init({
 // ===================================================
 
 function initStars() {
+  if (starsInitialized) return;
+  starsInitialized = true;
+
   const starLayer = document.getElementById("star-layer");
   if (!starLayer) return;
 
