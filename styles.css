@@ -1,17 +1,154 @@
 html {
   -webkit-text-size-adjust: 100%;
 }
+/* Neue Montreal */
+
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("/fonts/NeueMontreal-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("/fonts/NeueMontreal-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("/fonts/NeueMontreal-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Apply globally */
 
 html,
 body {
+  font-family: "Neue Montreal", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   min-height: 100%;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  font-family: "Inter", sans-serif !important;
-  font-size: 17px; /* Slight bump improves readability */
-  line-height: 1.55;
+  font-size: 17px;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  font-weight: 400;
   color: #e8e8e8;
+}
+
+/* -----------------------
+   Paragraph content
+------------------------ */
+p,
+.video-description,
+.hero-subtitle {
+  font-weight: 400;
+  letter-spacing: 0.012em;
+  line-height: 1.65;
+  color: #e8e8e8;
+}
+
+/* -----------------------
+   Headings — use Medium, not Ultra Bold
+------------------------ */
+h1,
+h2,
+h3,
+.section-title {
+  font-weight: 500; /* Montreal looks best Light–Medium */
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+}
+
+/* -----------------------
+   Hero background title refinement
+------------------------ */
+.background-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: 0.01em; /* Large type needs air */
+  font-weight: 700 !important;
+}
+
+/* -----------------------
+   Section titles
+------------------------ */
+.section-title {
+  font-size: 2.2rem;
+}
+
+/* -----------------------
+   Menu typography — high impact but clean
+------------------------ */
+.menu-button {
+  font-weight: 600 !important; /* Was too heavy at 700 */
+  letter-spacing: -0.02em; /* Matches modern UI feel */
+  text-transform: none;
+}
+
+/* -----------------------
+   Video Titles
+------------------------ */
+.video-title {
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+/* -----------------------
+   Swiper arrows / UI text
+------------------------ */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-weight: 500;
+}
+
+/* -----------------------
+   Small UI labels / captions
+------------------------ */
+.small,
+.caption,
+.meta {
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  opacity: 0.85;
+}
+
+/* -----------------------
+   ICON LABEL POLISH
+------------------------ */
+.hero-icons a {
+  letter-spacing: 0.015em;
+}
+
+/* -----------------------
+   MOBILE TEXT AUTO-TUNING
+------------------------ */
+@media (max-width: 768px) {
+  html,
+  body {
+    font-size: 16px;
+    letter-spacing: 0.01em;
+  }
+
+  h1,
+  h2,
+  h3,
+  .section-title {
+    letter-spacing: -0.015em;
+  }
+
+  .menu-button {
+    letter-spacing: -0.015em;
+  }
 }
 
 body {
@@ -66,8 +203,6 @@ body {
   color: var(--text-primary, #f5f5f5);
   padding: 10px 26px;
   font-size: 4rem;
-  font-weight: 700;
-  font-family: "MenuFont", sans-serif !important;
   text-align: left;
 
   /* Medium cinematic tilt — premium & readable */
@@ -206,8 +341,6 @@ body {
   }
 
   .video-description {
-    font-size: 0.85rem !important;
-    line-height: 1.3rem !important;
     margin-top: 0.5rem !important;
   }
 
@@ -323,18 +456,7 @@ body {
   }
 }
 
-.background-title,
-.section-title,
-h1,
-h2,
-h3 {
-  font-family: "SpaceGrotesk", sans-serif !important;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-}
-
 .background-title {
-  font-family: "Anton-Regular", sans-serif;
   position: absolute;
   top: 38%;
   left: 50%;
@@ -345,7 +467,7 @@ h3 {
   color: #d9d1bd;
   text-align: center;
   z-index: 10;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.01em;
 
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 0 10px rgba(240, 225, 200, 0.15);
 
@@ -606,8 +728,7 @@ h3 {
 }
 .section-title {
   font-size: 2.2rem;
-  font-weight: 700;
-  letter-spacing: -0.5px;
+  font-weight: 600;
   margin-bottom: 1rem;
   margin-top: 2.4rem;
   text-align: center;
