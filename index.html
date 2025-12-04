@@ -51,7 +51,6 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="./styles.css" />
 
-    <!-- GSAP -->
     <script>
       // Detect mobile
       const isMobile =
@@ -60,10 +59,9 @@
         );
 
       if (!isMobile) {
-        const gsapScript = document.createElement("script");
-        gsapScript.src =
-          "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js";
-        document.head.appendChild(gsapScript);
+        document.write(
+          '<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"><\/script>'
+        );
       }
     </script>
 
@@ -186,9 +184,6 @@
       </section>
     </main>
 
-    <script src="https://unpkg.com/@barba/core"></script>
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
