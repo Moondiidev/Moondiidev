@@ -713,10 +713,25 @@ h3 {
 }
 
 .star {
-  position: absolute;
-  border-radius: 50%;
-  background: white;
-  box-shadow: 0 0 3px rgba(255, 255, 255, 0.7), 0 0 8px rgba(255, 255, 255, 0.4);
+  all: unset; /* REMOVE every inherited style */
+  position: absolute !important;
+  background: white !important;
+  border-radius: 50% !important;
+  width: 3px !important;
+  height: 3px !important;
+  will-change: opacity !important;
+
+  animation: flicker 1.5s ease-in-out infinite alternate !important;
+  animation-delay: var(--delay, 0s) !important;
+}
+
+@keyframes flicker {
+  0% {
+    opacity: var(--base, 0.2);
+  }
+  100% {
+    opacity: var(--flicker-max, 1);
+  }
 }
 
 /* Shooting star style */

@@ -642,10 +642,10 @@ function initStars() {
     const star = document.createElement("div");
     star.className = "star";
 
-    // Keep original cluster logic
     const r = Math.random();
     let size, base, flicker;
 
+    // Cluster brightness logic
     if (r < 0.7) {
       size = 1.5;
       base = 0.18;
@@ -665,20 +665,20 @@ function initStars() {
     star.style.width = size + "px";
     star.style.height = size + "px";
 
-    starLayer.appendChild(star);
+    // CSS variable-based flicker (strong values so you SEE it)
+    star.style.opacity = base;
 
-    // Flicker animation unchanged
-    gsap.to(star, {
-      opacity: base + Math.random() * flicker,
-      duration: 0.5 + Math.random(),
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut",
-      delay: Math.random() * 1.4,
-    });
+    star.style.setProperty("--base", base);
+    star.style.setProperty("--flicker-max", base + flicker + 0.3);
+    star.style.setProperty("--delay", (Math.random() * 1.4).toFixed(2) + "s");
+
+    // Critical for Barba swapping + Chrome bug:
+    void star.offsetWidth;
+
+    starLayer.appendChild(star);
   }
 
-  // Shooting stars + twinkle bursts remain active
+  // Shooting stars + twinkles remain the same
   shootingStarLoop();
   startTwinkleBursts();
 }
