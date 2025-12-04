@@ -338,7 +338,8 @@ h3 {
   position: absolute;
   top: 38%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) translateY(20px);
+  opacity: 0;
   font-size: 3rem;
   line-height: 1.1;
   color: #d9d1bd;
@@ -855,4 +856,126 @@ h3 {
 
 .menu-button:hover.pulsing::before {
   animation: none !important;
+}
+
+/* INDIVIDUAL ICONS can now hover safely */
+.hero-icons a svg {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease,
+    filter 0.35s ease;
+}
+
+/* Actual hover effect */
+.hero-icons a:hover svg {
+  transform: translateY(-3px) scale(1.12);
+  filter: drop-shadow(0 0 6px rgba(255, 220, 160, 0.3));
+  opacity: 1;
+}
+
+/* Tap effect on mobile */
+.hero-icons a:active svg {
+  transform: scale(0.88);
+}
+
+/* -------------------------------------
+   BACKGROUND TITLE - CSS ENTRANCE
+-------------------------------------- */
+body.page-enter .background-title {
+  animation: fadeSlideUpCentered 1.1s ease-out forwards;
+  animation-delay: 0.35s;
+}
+/* -------------------------------------
+   MENU BUTTONS - CSS ENTRANCE
+-------------------------------------- */
+/* animate only when entering */
+.menu li {
+  opacity: 0;
+  transform: translateY(18px);
+}
+/* Entrance animation */
+body.page-enter .menu li {
+  animation: menuLiEnter 0.9s ease-out forwards;
+}
+
+/* Stagger */
+body.page-enter .menu li:nth-child(1) {
+  animation-delay: 0.55s;
+}
+body.page-enter .menu li:nth-child(2) {
+  animation-delay: 0.68s;
+}
+
+/* Keyframe — NOW SAFE because only translateY is animated */
+@keyframes menuLiEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* stagger for each button */
+body.page-enter .menu-button:nth-child(1) {
+  animation-delay: 0.55s;
+}
+body.page-enter .menu-button:nth-child(2) {
+  animation-delay: 0.68s;
+}
+/* -------------------------------------
+   HERO SUBTITLE - CSS ENTRANCE
+-------------------------------------- */
+
+.hero-subtitle {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+body.page-enter .hero-subtitle {
+  animation: fadeSlideUp 0.9s ease-out forwards;
+  animation-delay: 0.85s;
+}
+/* -------------------------------------
+   HERO ICONS - CSS ENTRANCE
+-------------------------------------- */
+
+.hero-icons a {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+body.page-enter .hero-icons a {
+  animation: fadeSlideUp 0.9s ease-out forwards;
+}
+
+body.page-enter .hero-icons a:nth-child(1) {
+  animation-delay: 1.05s;
+}
+body.page-enter .hero-icons a:nth-child(2) {
+  animation-delay: 1.17s;
+}
+
+/* -------------------------------------
+   SHARED KEYFRAME
+-------------------------------------- */
+
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(var(--y, 15px));
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeSlideUpCentered {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(0);
+  }
 }

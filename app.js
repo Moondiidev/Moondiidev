@@ -450,63 +450,28 @@ function initVideoControls() {
 
 // Ensure page initialization after Barba.js transitions
 barba.hooks.afterEnter((data) => {
+  document.body.classList.add("page-enter");
+
   fixSwiperNavIcons();
   requestAnimationFrame(() => {
     initializePage();
-
-    // HERO ANIMATIONS RUN HERE – NO DOMContentLoaded
-    gsap.from(".background-title", {
-      opacity: 0,
-      y: 20,
-      duration: 1.1,
-      delay: 0.4,
-      ease: "power3.out",
-    });
-
-    gsap.from(".menu-button", {
-      opacity: 0,
-      y: 18,
-      duration: 1,
-      delay: 0.6,
-      ease: "power3.out",
-      onComplete() {
-        gsap.set(".menu-button", { clearProps: "transform" });
-      },
-    });
-    gsap.from(".hero-subtitle", {
-      opacity: 0,
-      y: 10,
-      duration: 1,
-      delay: 0.9,
-      ease: "power3.out",
-    });
-    gsap.from(".hero-icons a", {
-      opacity: 0,
-      y: 12,
-      duration: 1,
-      delay: 1.1,
-      stagger: 0.12,
-      ease: "power3.out",
-      onComplete() {
-        gsap.set(".hero-icons a", { clearProps: "all" });
-      },
-    });
 
     const namespace = data.next.namespace;
 
     // Enable overflow hidden ONLY on home
     if (namespace === "home") {
       document.body.classList.add("home-no-scroll");
+      initStars();
     } else {
       document.body.classList.remove("home-no-scroll");
     }
-
-    initStars();
   });
 });
 
 barba.hooks.afterLeave(() => {
   // Just in case — ensures cleanup
+  document.body.classList.remove("page-enter");
+
   document.body.classList.remove("home-no-scroll");
 });
 
