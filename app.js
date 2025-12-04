@@ -1,6 +1,5 @@
 // Global variable to store the current transition type
 let currentTransitionType = "type1";
-let starsInitialized = false;
 
 // Initialize first swiper with default options
 const swiper1Options = {
@@ -220,6 +219,8 @@ function initializePage() {
   } else {
     if (document.getElementById("mist-layer")) initMistDrift();
     initRandomButtonPulse();
+    initParallax();
+    initStars();
   }
 
   console.log("Page initialized.");
@@ -461,7 +462,6 @@ barba.hooks.afterEnter((data) => {
     // Enable overflow hidden ONLY on home
     if (namespace === "home") {
       document.body.classList.add("home-no-scroll");
-      initStars();
     } else {
       document.body.classList.remove("home-no-scroll");
     }
@@ -519,9 +519,12 @@ barba.init({
   ],
 });
 
-(function initParallax() {
+function initParallax() {
   const bg = document.querySelector(".bg-cover");
   if (!bg) return;
+
+  // Kill previous tween if Barba removed DOM
+  gsap.killTweensOf(bg);
 
   // Reduce motion support
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -532,39 +535,35 @@ barba.init({
   const centerX = window.innerWidth / 2;
   const centerY = window.innerHeight / 2;
 
-  // --- Smooth interpolation tween (runs once, super cheap) ---
-  gsap.to(
-    {},
-    {
-      duration: 0.016, // ~60fps
-      repeat: -1,
-      onUpdate() {
-        gsap.set(bg, {
-          x: targetX,
-          y: targetY,
-        });
-      },
-    }
-  );
+  // Smooth 60fps interpolation
+  gsap.to(bg, {
+    x: 0, // dummy to bind tween to bg element
+    duration: 0.016,
+    repeat: -1,
+    onUpdate: () => {
+      gsap.set(bg, { x: targetX, y: targetY });
+    },
+  });
 
-  // --- Mousemove handler (fast, no tween creation) ---
-  document.addEventListener("mousemove", (e) => {
+  // Remove previous listener if it exists
+  document.removeEventListener("mousemove", window._parallaxListener);
+
+  // New listener
+  window._parallaxListener = (e) => {
     const x = gsap.utils.clamp(-30, 30, (e.clientX - centerX) * 0.015);
     const y = gsap.utils.clamp(-30, 30, (e.clientY - centerY) * 0.015);
-
     targetX = x;
     targetY = y;
-  });
-})();
+  };
+
+  document.addEventListener("mousemove", window._parallaxListener);
+}
 
 // ===================================================
 // STAR EFFECTS: Flicker + Shooting Stars + Drift
 // ===================================================
 
 function initStars() {
-  if (starsInitialized) return;
-  starsInitialized = true;
-
   const starLayer = document.getElementById("star-layer");
   if (!starLayer) return;
 
