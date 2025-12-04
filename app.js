@@ -50,8 +50,6 @@ const swiper2Options = {
   },
 };
 
-document.addEventListener("DOMContentLoaded", initStars);
-
 function showDetails(title, description) {
   const overlay = document.getElementById("project-details-overlay");
   if (!overlay) return;
