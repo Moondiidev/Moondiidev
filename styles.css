@@ -798,33 +798,27 @@ h3 {
 
 @keyframes goldEmberPulse {
   0% {
-    transform: perspective(700px) rotateY(25deg) rotateX(2deg) translateZ(0px)
-      translateY(0px);
+    transform: perspective(700px) rotateY(25deg) rotateX(2deg);
     text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45), 0 0 6px rgba(230, 210, 170, 0);
     color: inherit;
   }
 
   50% {
-    /* Deeper depth + slight float — extremely subtle */
-    transform: perspective(700px) rotateY(25deg) rotateX(2deg) translateZ(7px)
-      translateY(-1px);
-
-    /* Premium gold ember glow */
+    transform: perspective(700px) rotateY(25deg) rotateX(2deg) scale(1.015); /* soft breathing depth without snapping */
     text-shadow: 0 6px 28px rgba(230, 210, 170, 0.42),
       0 0 20px rgba(230, 210, 170, 0.32);
     color: #e6d3ac;
   }
 
   100% {
-    transform: perspective(700px) rotateY(25deg) rotateX(2deg) translateZ(0px)
-      translateY(0px);
+    transform: perspective(700px) rotateY(25deg) rotateX(2deg);
     text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45), 0 0 6px rgba(230, 210, 170, 0);
     color: inherit;
   }
 }
 
 .menu-button.pulsing {
-  animation: goldEmberPulse 1.9s ease-in-out;
+  animation: goldEmberPulse 1.9s cubic-bezier(0.22, 1, 0.36, 1);
   animation-fill-mode: both;
 }
 
